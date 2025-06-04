@@ -5,7 +5,7 @@ RUN corepack enable
 
 WORKDIR /app
 
-# Copy everything first
+# Copy everything first - v2
 COPY . .
 
 # Debug: show what we have
