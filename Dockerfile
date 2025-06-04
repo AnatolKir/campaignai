@@ -5,11 +5,12 @@ RUN corepack enable
 
 WORKDIR /app
 
-# Copy everything first - v3
+# Copy everything first - v4 FORCE NODE 20
 COPY . .
 
-# Debug: show what we have
+# Debug: show what we have and Node version
 RUN ls -la && echo "=== Apps directory ===" && ls -la apps/ || echo "No apps directory"
+RUN node --version && echo "Node version confirmed"
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile
