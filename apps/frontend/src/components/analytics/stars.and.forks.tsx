@@ -6,9 +6,29 @@ import { Chart } from '@gitroom/frontend/components/analytics/chart';
 import { UtcToLocalDateRender } from '@gitroom/react/helpers/utc.date.render';
 import clsx from 'clsx';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
+
 export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
-  const { list } = props;
   const t = useT();
+  
+  // Add fallback data for when props are undefined due to failed API calls
+  const list = props?.list || [];
+  const trending = props?.trending || {
+    last: new Date().toISOString(),
+    predictions: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+  };
+
+  // If no data available, show loading/empty state
+  if (list.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-[272px] bg-secondary rounded">
+        <div className="text-center">
+          <div className="text-2xl mb-2">{t('no_analytics_data', 'No Analytics Data')}</div>
+          <div className="text-textColor/60">{t('connect_accounts_analytics', 'Connect your accounts to see analytics')}</div>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <>
       {list.map((item) => (
@@ -147,7 +167,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
               <div className="text-[24px] flex-1">
                 <UtcToLocalDateRender
                   date={
-                    p === 0 ? props.trending.last : props.trending.predictions
+                    p === 0 ? trending.last : trending.predictions
                   }
                   format="dddd"
                 />
@@ -160,7 +180,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
               >
                 <UtcToLocalDateRender
                   date={
-                    p === 0 ? props.trending.last : props.trending.predictions
+                    p === 0 ? trending.last : trending.predictions
                   }
                   format="DD MMM YYYY"
                 />
@@ -176,7 +196,7 @@ export const StarsAndForks: FC<StarsAndForksInterface> = (props) => {
               >
                 <UtcToLocalDateRender
                   date={
-                    p === 0 ? props.trending.last : props.trending.predictions
+                    p === 0 ? trending.last : trending.predictions
                   }
                   format="HH:mm"
                 />

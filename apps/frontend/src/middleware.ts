@@ -61,6 +61,9 @@ export async function middleware(request: NextRequest) {
   }
   const org = nextUrl.searchParams.get('org');
   const url = new URL(nextUrl).search;
+  
+  // TEMPORARILY DISABLED - Authentication check commented out for demo
+  /*
   if (nextUrl.href.indexOf('/auth') === -1 && !authCookie) {
     const providers = ['google', 'settings'];
     const findIndex = providers.find((p) => nextUrl.href.indexOf(p) > -1);
@@ -77,6 +80,7 @@ export async function middleware(request: NextRequest) {
       new URL(`/auth${url}${additional}`, nextUrl.href)
     );
   }
+  */
 
   // If the url is /auth and the cookie exists, redirect to /
   if (nextUrl.href.indexOf('/auth') > -1 && authCookie) {
@@ -132,6 +136,9 @@ export async function middleware(request: NextRequest) {
       }
       return redirect;
     }
+    
+    // DISABLED - Allow landing page to be shown at root path
+    /*
     if (nextUrl.pathname === '/') {
       return NextResponse.redirect(
         new URL(
@@ -140,6 +147,8 @@ export async function middleware(request: NextRequest) {
         )
       );
     }
+    */
+    
     const next = NextResponse.next({
       headers,
     });

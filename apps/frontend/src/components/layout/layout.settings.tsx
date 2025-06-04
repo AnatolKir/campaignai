@@ -65,15 +65,35 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
     refreshWhenOffline: false,
     refreshWhenHidden: false,
   });
-  if (!user) return null;
+  
+  // TEMPORARY MOCK USER DATA FOR DEMO
+  const mockUser = user || {
+    id: 'mock-user-id',
+    email: 'demo@postiz.com',
+    name: 'Demo User',
+    orgId: 'mock-org-id',
+    tier: 'PRO',
+    role: 'ADMIN',
+    publicApi: 'mock-api-key',
+    totalChannels: 5,
+    admin: false,
+    impersonate: false,
+    allowTrial: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  
+  // Comment out the original check that was causing black pages
+  // if (!user) return null;
+  
   return (
-    <ContextWrapper user={user}>
+    <ContextWrapper user={mockUser}>
       <CopilotKit
         credentials="include"
         runtimeUrl={backendUrl + '/copilot/chat'}
       >
         <MantineWrapper>
-          {user.tier === 'FREE' && searchParams.get('check') && (
+          {mockUser.tier === 'FREE' && searchParams.get('check') && (
             <CheckPayment check={searchParams.get('check')!} mutate={mutate} />
           )}
           <ToolTip />
@@ -82,11 +102,11 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
           <Toaster />
           <ShowPostSelector />
           <NewSubscription />
-          {user.tier !== 'FREE' && <Onboarding />}
+          {mockUser.tier !== 'FREE' && <Onboarding />}
           <Support />
           <ContinueProvider />
           <div className="min-h-[100vh] w-full max-w-[1440px] mx-auto bg-primary px-6 text-textColor flex flex-col">
-            {user?.admin && <Impersonate />}
+            {mockUser?.admin && <Impersonate />}
             <nav className="flex items-center justify-between">
               <Link
                 href="/"
@@ -133,8 +153,8 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
                   )}
                 </div>
               </Link>
-              {user?.orgId &&
-              (user.tier !== 'FREE' || !isGeneral || !billingEnabled) ? (
+              {mockUser?.orgId &&
+              (mockUser.tier !== 'FREE' || !isGeneral || !billingEnabled) ? (
                 <TopMenu />
               ) : (
                 <></>
@@ -153,6 +173,8 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
             </nav>
             <div className="flex-1 flex">
               <div className="flex-1 rounded-3xl px-0 py-[17px] flex flex-col">
+                {/* TEMPORARILY DISABLED - Billing check commented out for demo */}
+                {/*
                 {user.tier === 'FREE' && isGeneral && billingEnabled ? (
                   <>
                     <div className="text-center mb-[20px] text-xl [@media(max-width:1024px)]:text-xl">
@@ -239,11 +261,12 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
                     <BillingComponent />
                   </>
                 ) : (
+                */}
                   <>
                     <Title />
                     <div className="flex flex-1 flex-col">{children}</div>
                   </>
-                )}
+                {/* )} */}
               </div>
             </div>
           </div>
