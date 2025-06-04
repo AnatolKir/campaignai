@@ -1,0 +1,12 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "pwd && ls -la && echo '=== Checking for apps directory ===' && ls -la apps/ || echo 'apps directory not found' && echo '=== Full directory tree ===' && find . -type d -name '*backend*' || echo 'No backend directories found'"
+  },
+  "deploy": {
+    "startCommand": "echo 'Debug build - not starting app'",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 1
+  }
+} 
