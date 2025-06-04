@@ -1,11 +1,11 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Enable corepack for pnpm
 RUN corepack enable
 
 WORKDIR /app
 
-# Copy everything first - v2
+# Copy everything first - v3
 COPY . .
 
 # Debug: show what we have
@@ -20,5 +20,5 @@ RUN pnpm run build:backend
 # Expose port 3000
 EXPOSE 3000
 
-# Start the backend application
-CMD ["pnpm", "run", "start:prod:backend"] 
+# Start the backend application directly (bypass dotenv)
+CMD ["node", "apps/backend/dist/apps/backend/src/main.js"] 
