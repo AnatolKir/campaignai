@@ -74,7 +74,21 @@ export default function AgentSettings() {
     // Advanced Settings
     contextMemory: "medium",
     approvalRequired: false,
-    riskTolerance: "moderate"
+    riskTolerance: "moderate",
+    
+    // Compliance & Rules
+    complianceRules: [
+      "Never share personal information or confidential data",
+      "Always respect intellectual property and copyright laws",
+      "Avoid discriminatory language or content",
+      "Do not engage in harassment or bullying behavior",
+      "Respect privacy settings and data protection regulations",
+      "Follow platform-specific community guidelines",
+      "Maintain professional boundaries in all interactions",
+      "Verify information before sharing as fact",
+      "Avoid making claims about competitors that cannot be substantiated",
+      "Do not impersonate other individuals or organizations"
+    ]
   });
 
   const sections = [
@@ -87,7 +101,8 @@ export default function AgentSettings() {
     { id: "posting", label: "Posting Behavior", icon: "📅" },
     { id: "engagement", label: "Engagement Strategy", icon: "🤝" },
     { id: "learning", label: "Learning & Adaptation", icon: "🧠" },
-    { id: "advanced", label: "Advanced Settings", icon: "⚙️" }
+    { id: "advanced", label: "Advanced Settings", icon: "⚙️" },
+    { id: "compliance", label: "Compliance & Rules", icon: "📋" }
   ];
 
   return (
@@ -1398,6 +1413,183 @@ export default function AgentSettings() {
                           <option>Moderate - Popular trends</option>
                           <option>Early Adopter - Jump on new trends</option>
                         </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Compliance & Rules Section */}
+          {activeSection === "compliance" && (
+            <div className="space-y-6">
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                <h3 className="text-2xl font-bold text-white mb-4">Compliance & Rules</h3>
+                <p className="text-gray-300 mb-6">Establish ethical guidelines and compliance rules for your AI agent to follow</p>
+                
+                <div className="space-y-8">
+                  {/* Current Rules */}
+                  <div>
+                    <label className="block text-white font-semibold mb-4">Current Rules</label>
+                    <div className="space-y-3">
+                      {agentData.complianceRules.map((rule, index) => (
+                        <div key={index} className="flex items-start justify-between p-4 bg-white/5 rounded-lg border border-white/10">
+                          <div className="flex items-start space-x-3 flex-1">
+                            <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mt-0.5">
+                              <span className="text-white text-xs font-bold">{index + 1}</span>
+                            </div>
+                            <div className="text-gray-300 leading-relaxed">{rule}</div>
+                          </div>
+                          <button 
+                            onClick={() => setAgentData({
+                              ...agentData,
+                              complianceRules: agentData.complianceRules.filter((_, i) => i !== index)
+                            })}
+                            className="text-red-400 hover:text-red-300 ml-4 mt-1"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Add New Rule */}
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <h4 className="text-xl font-semibold text-white mb-4">Add New Rule</h4>
+                    <div className="space-y-4">
+                      <textarea
+                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none h-24 resize-none"
+                        placeholder="Enter a new compliance rule (e.g., 'Always disclose when content is AI-generated')"
+                        onKeyPress={(e) => {
+                          const target = e.target as HTMLTextAreaElement;
+                          if (e.key === 'Enter' && !e.shiftKey && target.value.trim()) {
+                            e.preventDefault();
+                            setAgentData({
+                              ...agentData,
+                              complianceRules: [...agentData.complianceRules, target.value.trim()]
+                            });
+                            target.value = '';
+                          }
+                        }}
+                      />
+                      <div className="flex items-center justify-between">
+                        <p className="text-gray-400 text-sm">Press Enter to add rule, Shift+Enter for new line</p>
+                        <button 
+                          onClick={(e) => {
+                            const textarea = e.currentTarget.parentElement?.previousElementSibling as HTMLTextAreaElement;
+                            if (textarea && textarea.value.trim()) {
+                              setAgentData({
+                                ...agentData,
+                                complianceRules: [...agentData.complianceRules, textarea.value.trim()]
+                              });
+                              textarea.value = '';
+                            }
+                          }}
+                          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all"
+                        >
+                          Add Rule
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Rule Categories */}
+                  <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                    <h4 className="text-xl font-semibold text-white mb-4">💡 Suggested Rule Categories</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <h5 className="text-white font-medium">Privacy & Data Protection</h5>
+                        <ul className="text-gray-300 text-sm space-y-1">
+                          <li>• Protect personal information</li>
+                          <li>• Respect user privacy settings</li>
+                          <li>• Follow GDPR/CCPA guidelines</li>
+                          <li>• Secure data handling practices</li>
+                        </ul>
+                      </div>
+                      <div className="space-y-3">
+                        <h5 className="text-white font-medium">Ethical Communication</h5>
+                        <ul className="text-gray-300 text-sm space-y-1">
+                          <li>• Use inclusive language</li>
+                          <li>• Avoid discriminatory content</li>
+                          <li>• Respect cultural differences</li>
+                          <li>• Maintain professional tone</li>
+                        </ul>
+                      </div>
+                      <div className="space-y-3">
+                        <h5 className="text-white font-medium">Content Guidelines</h5>
+                        <ul className="text-gray-300 text-sm space-y-1">
+                          <li>• Verify information accuracy</li>
+                          <li>• Respect copyright laws</li>
+                          <li>• Disclose AI-generated content</li>
+                          <li>• Avoid misleading claims</li>
+                        </ul>
+                      </div>
+                      <div className="space-y-3">
+                        <h5 className="text-white font-medium">Platform Compliance</h5>
+                        <ul className="text-gray-300 text-sm space-y-1">
+                          <li>• Follow platform terms of service</li>
+                          <li>• Respect community guidelines</li>
+                          <li>• Adhere to advertising policies</li>
+                          <li>• Report inappropriate content</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Quick Add Common Rules */}
+                    <div className="mt-6">
+                      <h5 className="text-white font-medium mb-3">Quick Add Common Rules</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          "Always disclose when content is AI-generated",
+                          "Never share confidential business information",
+                          "Respect user opt-out requests immediately",
+                          "Only use approved brand assets and logos",
+                          "Avoid making medical or financial advice claims",
+                          "Do not engage with spam or inappropriate content"
+                        ].map((commonRule, index) => (
+                          <button
+                            key={index}
+                            onClick={() => {
+                              if (!agentData.complianceRules.includes(commonRule)) {
+                                setAgentData({
+                                  ...agentData,
+                                  complianceRules: [...agentData.complianceRules, commonRule]
+                                });
+                              }
+                            }}
+                            className="bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white px-3 py-1 rounded-full text-sm transition-all border border-white/20"
+                            disabled={agentData.complianceRules.includes(commonRule)}
+                          >
+                            {agentData.complianceRules.includes(commonRule) ? "✓ Added" : `+ ${commonRule}`}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Rule Summary */}
+                  <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                    <h4 className="text-xl font-semibold text-white mb-4">📊 Rules Summary</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-green-400">{agentData.complianceRules.length}</div>
+                        <div className="text-gray-300 text-sm">Total Rules</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-blue-400">
+                          {Math.round((agentData.complianceRules.length / 15) * 100)}%
+                        </div>
+                        <div className="text-gray-300 text-sm">Coverage Score</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-purple-400">
+                          {agentData.complianceRules.length >= 10 ? "High" : agentData.complianceRules.length >= 5 ? "Medium" : "Low"}
+                        </div>
+                        <div className="text-gray-300 text-sm">Compliance Level</div>
                       </div>
                     </div>
                   </div>

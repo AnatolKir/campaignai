@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function AccountsPage() {
   const socialPlatforms = [
@@ -86,6 +87,54 @@ export default function AccountsPage() {
       engagement: "0%"
     }
   ];
+
+  // State for loading states
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  // Handler functions for quick actions
+  const handleBulkConnect = async () => {
+    setIsConnecting(true);
+    try {
+      // Simulate connecting multiple accounts
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      alert("Bulk connection wizard launched! This would open a modal to connect multiple social media accounts simultaneously.");
+    } catch (error) {
+      console.error("Error connecting accounts:", error);
+      alert("Failed to launch bulk connection wizard. Please try again.");
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  const handleImportCompetitors = async () => {
+    setIsImporting(true);
+    try {
+      // Simulate importing competitor data
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      alert("Competitor import started! This would allow you to analyze competitor accounts and strategies.");
+    } catch (error) {
+      console.error("Error importing competitors:", error);
+      alert("Failed to import competitors. Please try again.");
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  const handleGenerateReport = async () => {
+    setIsGenerating(true);
+    try {
+      // Simulate report generation
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      alert("Account performance report generated! This would create a comprehensive report of your social media performance.");
+    } catch (error) {
+      console.error("Error generating report:", error);
+      alert("Failed to generate report. Please try again.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
@@ -230,14 +279,56 @@ export default function AccountsPage() {
           <div className="mt-12 bg-gradient-to-r from-purple-900/50 to-pink-900/50 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
             <h2 className="text-2xl font-bold text-white mb-4">Quick Actions</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
-                Bulk Connect Accounts
+              <button 
+                onClick={handleBulkConnect}
+                disabled={isConnecting}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isConnecting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Connecting...
+                  </>
+                ) : (
+                  "Bulk Connect Accounts"
+                )}
               </button>
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
-                Import Competitors
+              <button 
+                onClick={handleImportCompetitors}
+                disabled={isImporting}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isImporting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Importing...
+                  </>
+                ) : (
+                  "Import Competitors"
+                )}
               </button>
-              <button className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-3 px-6 rounded-lg hover:from-orange-700 hover:to-red-700 transition-all">
-                Generate Report
+              <button 
+                onClick={handleGenerateReport}
+                disabled={isGenerating}
+                className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-3 px-6 rounded-lg hover:from-orange-700 hover:to-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isGenerating ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Generating...
+                  </>
+                ) : (
+                  "Generate Report"
+                )}
               </button>
             </div>
           </div>
