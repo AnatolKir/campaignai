@@ -1,14 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -17,6 +12,12 @@ export const metadata: Metadata = {
   description: "Automate your social media growth with AI. Intelligent posting, engagement, competitor analysis, and follower growth - all powered by advanced AI technology.",
   keywords: "AI social media, automated posting, social media management, competitor analysis, follower growth, engagement automation",
   authors: [{ name: "Campaign.ai Team" }],
+  icons: {
+    icon: [
+      { url: '/logo-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon' }
+    ]
+  }
 };
 
 export const viewport: Viewport = {
@@ -32,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         {children}
       </body>

@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e935c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Outer rounded square with gradient -->
+  <rect width="64" height="64" rx="14" fill="url(#faviconGradient)"/>
+  <!-- Dark center circle -->
+  <circle cx="32" cy="32" r="24" fill="#2d1b3d"/>
+  <!-- White geometric shapes - exact Campaign.ai logo -->
+  <g fill="white">
+    <!-- Top hexagon -->
+    <polygon points="32,12 37,14 37,18 32,20 27,18 27,14" />
+    <!-- Left elongated hexagon - angled inward -->
+    <polygon points="15,24 23,22 29,42 21,44 13,42 13,26" />
+    <!-- Right elongated hexagon - angled inward -->
+    <polygon points="41,22 49,24 51,26 51,42 43,44 35,42" />
+    <!-- Bottom left small hexagon -->
+    <polygon points="19,45 22,46 22,48 19,49 16,48 16,46" />
+    <!-- Bottom right small hexagon -->
+    <polygon points="45,45 48,46 48,48 45,49 42,48 42,46" />
+  </g>
+</svg> 

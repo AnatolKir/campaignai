@@ -1348,8 +1348,8 @@ partnercompany,partners,Strategic partnership opportunity
       <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">C</span>
+            <div className="w-8 h-8 flex items-center justify-center">
+                              <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
             </div>
             <span className="text-white font-bold text-xl">Campaign.ai</span>
           </div>
