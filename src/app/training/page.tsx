@@ -438,6 +438,12 @@ export default function TrainingCenter() {
             <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
               Analytics
             </Link>
+            <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
+              Monetize
+            </Link>
+            <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors">
+              Advertise
+            </Link>
             <Link href="/training" className="text-white bg-purple-600/20 px-3 py-1 rounded-lg">
               Training
             </Link>

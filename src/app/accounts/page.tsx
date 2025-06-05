@@ -114,6 +114,12 @@ export default function AccountsPage() {
             <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
               Analytics
             </Link>
+            <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
+              Monetize
+            </Link>
+            <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors">
+              Advertise
+            </Link>
             <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
               Training
             </Link>
