@@ -124,9 +124,9 @@ export default function PlatformPage() {
     { id: "engagement-targets", label: "Engagement Targets", color: "blue", description: "Accounts you want engagement from" },
     { id: "potential-customers", label: "Potential Customers", color: "green", description: "Leads and prospects" },
     { id: "industry-leaders", label: "Industry Leaders", color: "orange", description: "Thought leaders and experts" },
-    { id: "influencers", label: "Influencers", color: "pink", description: "Content creators and influencers" },
+    { id: "influencers", label: "Influencers", color: "cyan", description: "Content creators and influencers" },
     { id: "partners", label: "Partners/Collaborators", color: "indigo", description: "Business partners and collaborators" },
-    { id: "media", label: "Media Contacts", color: "yellow", description: "Journalists and media contacts" },
+    { id: "media", label: "Media Contacts", color: "emerald", description: "Journalists and media contacts" },
   ];
 
   // Helper functions
@@ -983,12 +983,15 @@ partnercompany,partners,Strategic partnership opportunity
               
               {/* Category Legend */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
-                {accountCategories.map((category) => (
-                  <div key={category.id} className="flex items-center space-x-2">
-                    <div className={`w-3 h-3 rounded-full bg-${category.color}-500`}></div>
-                    <span className="text-gray-300 text-xs">{category.label}</span>
-                  </div>
-                ))}
+                {accountCategories.map((category) => {
+                  const count = targetAccounts.filter(acc => acc.category === category.id).length;
+                  return (
+                    <div key={category.id} className="flex items-center space-x-2">
+                      <div className={`w-3 h-3 rounded-full bg-${category.color}-500`}></div>
+                      <span className="text-gray-300 text-xs">{category.label} ({count})</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

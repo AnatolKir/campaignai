@@ -41,6 +41,12 @@ export default function Dashboard() {
             <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
               Analytics
             </Link>
+            <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
+              Monetize
+            </Link>
+            <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors">
+              Advertise
+            </Link>
             <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
               Training
             </Link>
@@ -202,12 +208,9 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="flex space-x-4">
-                <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
-                  Brand Settings
-                </button>
-                <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
-                  Customize Agent
-                </button>
+                <Link href="/agent-settings" className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
+                  Customize Agent for Brand
+                </Link>
               </div>
             </div>
           </div>
@@ -428,12 +431,12 @@ export default function Dashboard() {
           <div className="mt-8">
             <h4 className="text-white font-semibold mb-4">Quick Actions</h4>
             <div className="space-y-3">
-              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
-                Customize AI Agent
-              </button>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
+              <Link href="/agent-settings" className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all text-center">
+                Customize Agent for Brand
+              </Link>
+              <Link href="/training" className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all text-center">
                 Training Center
-              </button>
+              </Link>
               <button className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white py-3 rounded-lg hover:from-orange-700 hover:to-red-700 transition-all">
                 Competitor Reports
               </button>

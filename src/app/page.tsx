@@ -20,6 +20,12 @@ export default function Home() {
               <Link href="/upgrade" className="text-gray-300 hover:text-white transition-colors">
                 Pricing
               </Link>
+              <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
+                Monetize
+              </Link>
+              <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors">
+                Advertise
+              </Link>
               <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
                 Dashboard
               </Link>
