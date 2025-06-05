@@ -17,6 +17,15 @@ interface PlatformData {
   };
 }
 
+interface TargetAccount {
+  id: number;
+  username: string;
+  category: string;
+  notes?: string;
+  status: "active" | "paused" | "inactive";
+  addedDate: string;
+}
+
 const platformsData: Record<string, PlatformData> = {
   twitter: {
     name: "Twitter/X",
@@ -136,13 +145,13 @@ export default function PlatformPage() {
       const reader = new FileReader();
       reader.onload = (e) => {
         const csvText = e.target?.result as string;
-        processCSVData(csvText, file.name);
+        processCSVData(csvText);
       };
       reader.readAsText(file);
     }
   };
 
-  const processCSVData = (csvText: string, fileName: string) => {
+  const processCSVData = (csvText: string) => {
     try {
       // Filter out comment lines (starting with #) and empty lines
       const allLines = csvText.trim().split('\n');
@@ -169,7 +178,7 @@ export default function PlatformPage() {
       const notesIndex = headers.indexOf('notes');
 
       const validCategories = accountCategories.map(cat => cat.id);
-      const newAccounts: any[] = [];
+      const newAccounts: TargetAccount[] = [];
       const errors: string[] = [];
       let processedRows = 0;
 
@@ -512,7 +521,7 @@ partnercompany,partners,Strategic partnership opportunity
                   <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <span className="text-green-400">✓</span>
-                      <span className="text-white">AI posted: "Exciting developments in tech..."</span>
+                      <span className="text-white">AI posted: &quot;Exciting developments in tech...&quot;</span>
                     </div>
                     <span className="text-gray-400 text-sm">2 hours ago</span>
                   </div>
