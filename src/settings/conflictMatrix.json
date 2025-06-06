@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "description": "Updated conflict matrix for consolidated settings - many previous conflicts are now prevented by design",
+  "conflicts": [
+    {
+      "category": "communication_timing_mismatch",
+      "mutually_exclusive": [
+        ["engagementStyle:leader", "responseTiming:manual-review"],
+        ["communicationPersona:casual-friend", "responsePattern:brief-direct"]
+      ],
+      "description": "Community leader engagement style conflicts with manual review timing, and casual personas work better with interactive patterns"
+    },
+    {
+      "category": "content_approach_consistency",
+      "mutually_exclusive": [
+        ["contentApproach:conservative", "creativityLevel:high"],
+        ["contentApproach:innovative", "adaptationApproach:conservative"]
+      ],
+      "description": "Content approach should align with creativity and adaptation levels"
+    }
+  ],
+  "warnings": [
+    {
+      "combination": ["communicationPersona:professional-expert", "humorLevel:frequent"],
+      "message": "Frequent humor may not align well with professional expert persona",
+      "severity": "medium"
+    },
+    {
+      "combination": ["engagementStyle:leader", "dailyLimits:>300"],
+      "message": "High daily limits with leader engagement style may appear spammy",
+      "severity": "high"
+    },
+    {
+      "combination": ["responseTiming:immediate-auto", "communicationPersona:professional-expert"],
+      "message": "Professional experts may benefit from slightly delayed, more thoughtful responses",
+      "severity": "low"
+    }
+  ],
+  "consolidatedFields": {
+    "communicationPersona": {
+      "replaces": ["brandVoice", "formalityLevel", "communicationPreference"],
+      "description": "Single comprehensive communication style choice"
+    },
+    "responsePattern": {
+      "replaces": ["responseLength", "questionFrequency"],
+      "description": "Combined response detail and interaction level"
+    },
+    "engagementStyle": {
+      "replaces": ["proactiveness", "conversationStarters", "followUpBehavior"],
+      "description": "Unified engagement approach preventing internal conflicts"
+    },
+    "responseTiming": {
+      "replaces": ["responseSpeed", "timingOptimization", "approvalRequired"],
+      "description": "Combined timing and control preferences"
+    }
+  },
+  "preventedConflicts": [
+    "Reactive proactiveness with conversation starters enabled (now impossible)",
+    "Professional brand voice with casual communication preference (consolidated)",
+    "Manual timing with automatic frequency (unified in responseTiming)",
+    "Conservative risk with high creativity (will be unified in contentApproach)"
+  ]
+} 

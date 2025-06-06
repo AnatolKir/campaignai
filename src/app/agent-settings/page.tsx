@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSettingsValidation } from "../../hooks/useSettingsValidation";
+import { SettingsValidationAlert } from "../../components/SettingsValidationAlert";
+import { ValidatedRadioGroup, ValidatedCheckbox, ValidatedSelect } from "../../components/ValidatedFormField";
 
 export default function AgentSettings() {
   const [activeSection, setActiveSection] = useState("identity");
@@ -91,6 +94,17 @@ export default function AgentSettings() {
     ]
   });
 
+  // GitHub Repository form state
+  const [githubForm, setGithubForm] = useState({
+    url: '',
+    title: '',
+    description: '',
+    branch: 'main'
+  });
+
+  // Initialize settings validation
+  const validation = useSettingsValidation(agentData);
+
   const sections = [
     { id: "identity", label: "Brand Identity", icon: "🎨" },
     { id: "docs", label: "Docs and Links", icon: "📚" },
@@ -152,35 +166,21 @@ export default function AgentSettings() {
             ))}
           </div>
 
-          {/* Agent Preview */}
-          <div className="mt-8 bg-gradient-to-br from-purple-900/30 to-pink-900/30 backdrop-blur-lg rounded-2xl p-4 border border-white/10">
-            <h4 className="text-white font-semibold mb-3">Agent Preview</h4>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <div 
-                  className="w-4 h-4 rounded" 
-                  style={{ backgroundColor: agentData.primaryColor }}
-                ></div>
-                <span className="text-gray-300 text-sm">Brand Color</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-300 text-sm">Voice</span>
-                <span className="text-purple-300 text-sm capitalize">{agentData.brandVoice}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-300 text-sm">Enthusiasm</span>
-                <span className="text-purple-300 text-sm capitalize">{agentData.enthusiasmLevel}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-300 text-sm">Response Speed</span>
-                <span className="text-purple-300 text-sm capitalize">{agentData.responseSpeed}</span>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-y-auto">
+          {/* Settings Validation Alert */}
+          <SettingsValidationAlert 
+            conflicts={validation.conflicts}
+            warnings={validation.warnings}
+            className="mb-6"
+            onResolveConflict={(conflict) => {
+              // Handle conflict resolution by suggesting changes
+              console.log('Resolving conflict:', conflict);
+            }}
+          />
           {/* Brand Identity Section */}
           {activeSection === "identity" && (
             <div className="space-y-6">
@@ -330,6 +330,7 @@ export default function AgentSettings() {
                            <option value="About Us">About Us Page</option>
                            <option value="Case Study">Case Study</option>
                            <option value="Documentation">Documentation</option>
+                           <option value="GitHub Repository">GitHub Repository</option>
                            <option value="Other">Other</option>
                          </select>
                       </div>
@@ -362,6 +363,101 @@ export default function AgentSettings() {
                     </button>
                   </div>
 
+                  {/* GitHub Repository Section */}
+                  <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <span className="text-2xl">🐙</span>
+                      <h4 className="text-xl font-semibold text-white">Connect GitHub Repository</h4>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-6">
+                      Connect your GitHub repositories to help your AI agent understand your codebase, projects, and technical documentation.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-gray-300 text-sm mb-2">Repository URL</label>
+                          <input
+                            type="url"
+                            value={githubForm.url}
+                            onChange={(e) => setGithubForm({...githubForm, url: e.target.value})}
+                            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
+                            placeholder="https://github.com/username/repository"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-300 text-sm mb-2">Repository Name</label>
+                          <input
+                            type="text"
+                            value={githubForm.title}
+                            onChange={(e) => setGithubForm({...githubForm, title: e.target.value})}
+                            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
+                            placeholder="e.g., My AI Project"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        <div className="lg:col-span-2">
+                          <label className="block text-gray-300 text-sm mb-2">Description</label>
+                          <textarea
+                            value={githubForm.description}
+                            onChange={(e) => setGithubForm({...githubForm, description: e.target.value})}
+                            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none h-20 resize-none"
+                            placeholder="Brief description of the repository and how it relates to your brand..."
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-300 text-sm mb-2">Primary Branch</label>
+                          <select
+                            value={githubForm.branch}
+                            onChange={(e) => setGithubForm({...githubForm, branch: e.target.value})}
+                            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none"
+                          >
+                            <option value="main">main</option>
+                            <option value="master">master</option>
+                            <option value="develop">develop</option>
+                            <option value="staging">staging</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between items-center pt-4">
+                        <div className="flex items-start space-x-2">
+                          <div className="text-xs text-gray-400 leading-relaxed">
+                            <div className="mb-1">💡 <strong>What the AI learns from GitHub:</strong></div>
+                            <ul className="space-y-1">
+                              <li>• README files and documentation</li>
+                              <li>• Project structure and technologies used</li>
+                              <li>• Code examples and implementation patterns</li>
+                              <li>• Issue discussions and project updates</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button 
+                          onClick={() => {
+                            if (githubForm.url && githubForm.title) {
+                              setAgentData({
+                                ...agentData,
+                                resourceLinks: [...agentData.resourceLinks, {
+                                  url: githubForm.url,
+                                  title: githubForm.title,
+                                  description: githubForm.description + (githubForm.branch !== 'main' ? ` (Branch: ${githubForm.branch})` : ''),
+                                  type: "GitHub Repository"
+                                }]
+                              });
+                              setGithubForm({ url: '', title: '', description: '', branch: 'main' });
+                            }
+                          }}
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                          disabled={!githubForm.url || !githubForm.title}
+                        >
+                          Add Repository
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* File Upload */}
                   <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                     <h4 className="text-xl font-semibold text-white mb-4">Upload Documents</h4>
@@ -381,11 +477,62 @@ export default function AgentSettings() {
                     </div>
                   </div>
 
-                  {/* Existing Resources */}
+                  {/* Connected GitHub Repositories */}
+                  {agentData.resourceLinks.filter(resource => resource.type === "GitHub Repository").length > 0 && (
+                    <div className="mb-6">
+                      <h4 className="text-xl font-semibold text-white mb-4 flex items-center space-x-2">
+                        <span>🐙</span>
+                        <span>Connected GitHub Repositories</span>
+                      </h4>
+                      <div className="space-y-3">
+                        {agentData.resourceLinks
+                          .filter(resource => resource.type === "GitHub Repository")
+                          .map((repo, index) => (
+                          <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/30">
+                            <div className="flex items-center space-x-4">
+                              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                <span className="text-white text-lg">🐙</span>
+                              </div>
+                              <div>
+                                <h5 className="text-white font-medium">{repo.title}</h5>
+                                <p className="text-gray-400 text-sm">{repo.url.replace('https://github.com/', '')}</p>
+                                {repo.description && (
+                                  <p className="text-gray-300 text-xs mt-1">{repo.description}</p>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <button 
+                                onClick={() => window.open(repo.url, '_blank')}
+                                className="text-purple-400 hover:text-purple-300 text-sm"
+                              >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </button>
+                              <button 
+                                onClick={() => setAgentData({
+                                  ...agentData,
+                                  resourceLinks: agentData.resourceLinks.filter(r => r !== repo)
+                                })}
+                                className="text-red-400 hover:text-red-300 text-sm"
+                              >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Other Resources */}
                   <div>
-                    <h4 className="text-xl font-semibold text-white mb-4">Your Resources</h4>
+                    <h4 className="text-xl font-semibold text-white mb-4">Other Resources</h4>
                     <div className="space-y-3">
-                      {agentData.resourceLinks.map((resource, index) => (
+                      {agentData.resourceLinks.filter(resource => resource.type !== "GitHub Repository").map((resource, index) => (
                         <div key={index} className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10">
                           <div className="flex items-center space-x-4">
                             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
@@ -396,7 +543,8 @@ export default function AgentSettings() {
                                  resource.type === "Product Info" ? "📦" :
                                  resource.type === "About Us" ? "🏢" :
                                  resource.type === "Case Study" ? "📊" :
-                                 resource.type === "Documentation" ? "📋" : "🔗"}
+                                 resource.type === "Documentation" ? "📋" :
+                                 resource.type === "GitHub Repository" ? "🐙" : "🔗"}
                               </span>
                             </div>
                             <div>
@@ -433,10 +581,10 @@ export default function AgentSettings() {
                         </div>
                       ))}
                       
-                      {agentData.resourceLinks.length === 0 && (
+                      {agentData.resourceLinks.filter(resource => resource.type !== "GitHub Repository").length === 0 && (
                         <div className="text-center py-8 text-gray-400">
                           <div className="text-4xl mb-2">📚</div>
-                          <p>No resources added yet</p>
+                          <p>No other resources added yet</p>
                           <p className="text-sm">Add links or upload documents to help your AI agent learn about your brand</p>
                         </div>
                       )}
@@ -457,8 +605,9 @@ export default function AgentSettings() {
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <h5 className="text-white font-medium">Optional Resources</h5>
+                        <h5 className="text-white font-medium">Technical & Content</h5>
                         <ul className="text-gray-300 text-sm space-y-1">
+                          <li>• GitHub repositories</li>
                           <li>• Brand guidelines</li>
                           <li>• Case studies</li>
                           <li>• Press releases</li>
@@ -570,34 +719,21 @@ export default function AgentSettings() {
                   </div>
 
                   {/* Proactiveness */}
-                  <div>
-                    <label className="block text-white font-semibold mb-3">Proactiveness</label>
-                    <div className="space-y-3">
-                      {[
-                        { value: "reactive", label: "Reactive", desc: "Responds when engaged, rarely initiates" },
-                        { value: "balanced", label: "Balanced", desc: "Mix of responding and initiating" },
-                        { value: "proactive", label: "Highly Proactive", desc: "Actively starts conversations and engages" }
-                      ].map((level) => (
-                        <label key={level.value} className="flex items-start space-x-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 cursor-pointer transition-colors">
-                          <input
-                            type="radio"
-                            name="proactiveness"
-                            value={level.value}
-                            checked={agentData.proactiveness === level.value}
-                            onChange={(e) => setAgentData({
-                              ...agentData,
-                              proactiveness: e.target.value
-                            })}
-                            className="mt-1"
-                          />
-                          <div>
-                            <div className="text-white font-medium">{level.label}</div>
-                            <div className="text-gray-400 text-sm">{level.desc}</div>
-                          </div>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+                  <ValidatedRadioGroup
+                    label="Proactiveness"
+                    fieldName="proactiveness"
+                    value={agentData.proactiveness}
+                    options={[
+                      { value: "reactive", label: "Reactive", description: "Responds when engaged, rarely initiates" },
+                      { value: "balanced", label: "Balanced", description: "Mix of responding and initiating" },
+                      { value: "proactive", label: "Highly Proactive", description: "Actively starts conversations and engages" }
+                    ]}
+                    onChange={(value) => setAgentData({ ...agentData, proactiveness: value })}
+                    conflicts={validation.conflicts}
+                    warnings={validation.warnings}
+                    isFieldDisabled={validation.isFieldDisabled}
+                    getConflictingFields={validation.getConflictingFields}
+                  />
                 </div>
 
                 {/* Tone Guidelines */}
@@ -807,34 +943,21 @@ export default function AgentSettings() {
 
                   {/* Creativity & Originality */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <label className="block text-white font-semibold mb-3">Creativity Level</label>
-                      <div className="space-y-3">
-                        {[
-                          { value: "conservative", label: "Conservative", desc: "Safe, proven content approaches" },
-                          { value: "moderate", label: "Moderate", desc: "Balanced creativity with some experimentation" },
-                          { value: "high", label: "Highly Creative", desc: "Experimental, unique, trend-setting content" }
-                        ].map((level) => (
-                          <label key={level.value} className="flex items-start space-x-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 cursor-pointer transition-colors">
-                            <input
-                              type="radio"
-                              name="creativityLevel"
-                              value={level.value}
-                              checked={agentData.creativityLevel === level.value}
-                              onChange={(e) => setAgentData({
-                                ...agentData,
-                                creativityLevel: e.target.value
-                              })}
-                              className="mt-1"
-                            />
-                            <div>
-                              <div className="text-white font-medium">{level.label}</div>
-                              <div className="text-gray-400 text-sm">{level.desc}</div>
-                            </div>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
+                    <ValidatedRadioGroup
+                      label="Creativity Level"
+                      fieldName="creativityLevel"
+                      value={agentData.creativityLevel}
+                      options={[
+                        { value: "conservative", label: "Conservative", description: "Safe, proven content approaches" },
+                        { value: "moderate", label: "Moderate", description: "Balanced creativity with some experimentation" },
+                        { value: "high", label: "Highly Creative", description: "Experimental, unique, trend-setting content" }
+                      ]}
+                      onChange={(value) => setAgentData({ ...agentData, creativityLevel: value })}
+                      conflicts={validation.conflicts}
+                      warnings={validation.warnings}
+                      isFieldDisabled={validation.isFieldDisabled}
+                      getConflictingFields={validation.getConflictingFields}
+                    />
 
                     <div>
                       <label className="block text-white font-semibold mb-3">Original vs Curated Content</label>
@@ -1171,21 +1294,17 @@ export default function AgentSettings() {
                   <div>
                     <label className="block text-white font-semibold mb-3">Engagement Features</label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex items-start space-x-3 p-4 bg-white/5 rounded-lg">
-                        <input
-                          type="checkbox"
-                          checked={agentData.conversationStarters}
-                          onChange={(e) => setAgentData({
-                            ...agentData,
-                            conversationStarters: e.target.checked
-                          })}
-                          className="mt-1"
-                        />
-                        <div>
-                          <div className="text-white font-medium">Use Conversation Starters</div>
-                          <div className="text-gray-400 text-sm">Agent will ask questions and create discussion prompts</div>
-                        </div>
-                      </div>
+                      <ValidatedCheckbox
+                        label="Use Conversation Starters"
+                        fieldName="conversationStarters"
+                        description="Agent will ask questions and create discussion prompts"
+                        checked={agentData.conversationStarters}
+                        onChange={(checked) => setAgentData({ ...agentData, conversationStarters: checked })}
+                        conflicts={validation.conflicts}
+                        warnings={validation.warnings}
+                        isFieldDisabled={validation.isFieldDisabled}
+                        getConflictingFields={validation.getConflictingFields}
+                      />
                       <div className="flex items-start space-x-3 p-4 bg-white/5 rounded-lg">
                         <input
                           type="checkbox"
@@ -1391,21 +1510,21 @@ export default function AgentSettings() {
                   <div>
                     <label className="block text-white font-semibold mb-3">Risk Management</label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-white/5 rounded-lg p-4">
-                        <label className="block text-white font-medium mb-2">Risk Tolerance</label>
-                        <select 
-                          value={agentData.riskTolerance}
-                          onChange={(e) => setAgentData({
-                            ...agentData,
-                            riskTolerance: e.target.value
-                          })}
-                          className="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-white"
-                        >
-                          <option value="conservative">Conservative - Avoid all risk</option>
-                          <option value="moderate">Moderate - Some calculated risks</option>
-                          <option value="aggressive">Aggressive - Open to bold takes</option>
-                        </select>
-                      </div>
+                      <ValidatedSelect
+                        label="Risk Tolerance"
+                        fieldName="riskTolerance"
+                        value={agentData.riskTolerance}
+                        options={[
+                          { value: "conservative", label: "Conservative - Avoid all risk" },
+                          { value: "moderate", label: "Moderate - Some calculated risks" },
+                          { value: "aggressive", label: "Aggressive - Open to bold takes" }
+                        ]}
+                        onChange={(value) => setAgentData({ ...agentData, riskTolerance: value })}
+                        conflicts={validation.conflicts}
+                        warnings={validation.warnings}
+                        isFieldDisabled={validation.isFieldDisabled}
+                        getConflictingFields={validation.getConflictingFields}
+                      />
                       <div className="bg-white/5 rounded-lg p-4">
                         <label className="block text-white font-medium mb-2">Trend Participation</label>
                         <select className="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-white">
