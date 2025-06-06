@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { BrandProvider } from "../../contexts/BrandContext";
 
 export const metadata: Metadata = {
   title: "AI Agent Dashboard - Social Media Management Control Center",
@@ -51,5 +52,9 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <BrandProvider>
+      {children}
+    </BrandProvider>
+  );
 } 

@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AppNavigation } from "../../components/AppNavigation";
+import { useBrand } from "../../contexts/BrandContext";
 
 export default function Dashboard() {
+  const { currentBrand, isLoading } = useBrand();
   const [activeTab, setActiveTab] = useState("Smart Posting");
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(false);
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
@@ -17,79 +20,39 @@ export default function Dashboard() {
     "Schedule Manager"
   ];
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-gray-300">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Top Navigation */}
-      <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-4 sm:px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            {/* Mobile Menu Buttons */}
-            <button 
-              onClick={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
-              className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
-              </div>
-              <span className="text-white font-bold text-xl">Campaign.ai</span>
-            </div>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-4">
-            <Link href="/dashboard" className="text-white hover:text-purple-300 transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/accounts" className="text-gray-300 hover:text-white transition-colors">
-              Accounts
-            </Link>
-            <Link href="/posts" className="text-gray-300 hover:text-white transition-colors">
-              Posts
-            </Link>
-            <Link href="/engagement" className="text-gray-300 hover:text-white transition-colors">
-              Engagement
-            </Link>
-            <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
-              Analytics
-            </Link>
-            <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
-              Monetize
-            </Link>
-            <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors">
-              Advertise
-            </Link>
-            <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
-              Training
-            </Link>
-            <Link href="/upgrade" className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all text-white">
-              Upgrade to Pro
-            </Link>
-            <button className="text-gray-300 hover:text-white transition-colors">
-              Sign In
-            </button>
-          </div>
-
-          {/* Mobile Right Menu Button */}
-          <button 
-            onClick={() => setIsRightSidebarOpen(!isRightSidebarOpen)}
-            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-            </svg>
-          </button>
-        </div>
-      </nav>
+      <AppNavigation 
+        showMobileMenuButton={true}
+        onMobileMenuToggle={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
+      />
 
       <div className="flex min-h-screen">
         {/* Left Sidebar */}
         <div className={`${isLeftSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static z-30 w-64 bg-black/20 backdrop-blur-lg border-r border-white/10 transition-transform duration-300 ease-in-out h-full`}>
+          {/* Mobile close button */}
+          <div className="lg:hidden flex justify-end p-4">
+            <button 
+              onClick={() => setIsLeftSidebarOpen(false)}
+              className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
           <div className="p-6">
             <h2 className="text-xl font-bold text-white mb-6">Dashboard</h2>
             
@@ -114,10 +77,6 @@ export default function Dashboard() {
                 <span>⚙️</span>
                 <span>Agent Settings</span>
               </Link>
-              <Link href="/brand-settings" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center space-x-2">
-                <span>🎨</span>
-                <span>Brand Settings</span>
-              </Link>
             </div>
           </div>
         </div>
@@ -127,8 +86,17 @@ export default function Dashboard() {
           <div className="max-w-7xl mx-auto">
             {/* Welcome Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-white mb-2">Welcome to Campaign.ai</h1>
-              <p className="text-gray-300">Manage your AI-powered social media campaigns and engagement</p>
+              <h1 className="text-3xl font-bold text-white mb-2">
+                Welcome to {currentBrand?.name || 'Campaign.ai'}
+              </h1>
+              <p className="text-gray-300">
+                Manage your AI-powered social media campaigns and engagement
+                {currentBrand && (
+                  <span className="ml-2 px-2 py-1 bg-white/10 rounded text-sm">
+                    {currentBrand.handle || currentBrand.name}
+                  </span>
+                )}
+              </p>
             </div>
 
             {/* Stats Cards */}
