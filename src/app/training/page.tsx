@@ -334,7 +334,7 @@ export default function TrainingCenter() {
   ];
 
   const platforms = [
-    { value: 'twitter', label: 'Twitter/X', icon: '𝕏' },
+            { value: 'twitter', label: 'X', icon: '𝕏' },
     { value: 'instagram', label: 'Instagram', icon: '📷' },
     { value: 'linkedin', label: 'LinkedIn', icon: 'in' },
     { value: 'tiktok', label: 'TikTok', icon: '🎵' },
@@ -727,7 +727,7 @@ export default function TrainingCenter() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-300">Most Active Platform</span>
-                  <span className="text-white font-bold">Twitter/X</span>
+                                      <span className="text-white font-bold">X</span>
                 </div>
               </div>
             </div>

@@ -33,7 +33,7 @@ export default function MonetizePage() {
         postTime: "2:00 PM"
       },
       deadline: "2024-12-27",
-      platforms: ["Twitter/X", "LinkedIn"],
+      platforms: ["X", "LinkedIn"],
       category: "Technology"
     },
     {
@@ -83,7 +83,7 @@ export default function MonetizePage() {
         postTime: "11:00 AM"
       },
       deadline: "2024-12-28",
-      platforms: ["Instagram", "Twitter/X"],
+              platforms: ["Instagram", "X"],
       category: "Lifestyle"
     }
   ];
@@ -97,7 +97,7 @@ export default function MonetizePage() {
       campaign: "App Launch",
       amount: 750,
       status: 'completed',
-      platform: "Twitter/X"
+              platform: "X"
     },
     {
       id: "2",

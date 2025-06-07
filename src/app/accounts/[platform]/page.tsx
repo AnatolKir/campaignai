@@ -3,12 +3,17 @@
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { UnifiedNavigation } from "../../../components/UnifiedNavigation";
 
 interface PlatformData {
   name: string;
   icon: string;
   bgColor: string;
   isConnected: boolean;
+  accountType: string;
+  capabilities: string[];
+  limitations: string | null;
+  isBeta?: boolean;
   stats?: {
     followers: string;
     following: string;
@@ -27,18 +32,6 @@ interface TargetAccount {
 }
 
 const platformsData: Record<string, PlatformData> = {
-  twitter: {
-    name: "Twitter/X",
-    icon: "𝕏",
-    bgColor: "bg-black",
-    isConnected: true,
-    stats: {
-      followers: "12.3K",
-      following: "847",
-      posts: "1,249",
-      engagement: "4.2%"
-    }
-  },
   instagram: {
     name: "Instagram",
     icon: "📷",
@@ -49,7 +42,25 @@ const platformsData: Record<string, PlatformData> = {
       following: "652",
       posts: "342",
       engagement: "6.8%"
-    }
+    },
+    accountType: "Business/Creator Only",
+    capabilities: ["Post content", "Manage comments", "Manage DMs", "Analytics"],
+    limitations: "Personal accounts not supported"
+  },
+  twitter: {
+    name: "X",
+    icon: "𝕏",
+    bgColor: "bg-black",
+    isConnected: true,
+    stats: {
+      followers: "12.3K",
+      following: "847",
+      posts: "1,249",
+      engagement: "4.2%"
+    },
+    accountType: "All Account Types",
+    capabilities: ["Post content", "Manage comments/replies", "Manage DMs", "Analytics"],
+    limitations: null
   },
   linkedin: {
     name: "LinkedIn",
@@ -61,43 +72,74 @@ const platformsData: Record<string, PlatformData> = {
       following: "428",
       posts: "89",
       engagement: "3.1%"
-    }
+    },
+    accountType: "Company Pages Only",
+    capabilities: ["Post content", "Manage comments", "Analytics"],
+    limitations: "Personal profiles not supported"
   },
   tiktok: {
     name: "TikTok",
     icon: "🎵",
     bgColor: "bg-black",
-    isConnected: false
+    isConnected: false,
+    accountType: "Business/Creator Only",
+    capabilities: ["Post content", "Manage comments", "Analytics"],
+    limitations: "Personal accounts not supported"
   },
   youtube: {
     name: "YouTube",
     icon: "▶",
     bgColor: "bg-red-600",
-    isConnected: false
-  },
-  discord: {
-    name: "Discord",
-    icon: "💬",
-    bgColor: "bg-indigo-600",
-    isConnected: false
-  },
-  telegram: {
-    name: "Telegram",
-    icon: "✈",
-    bgColor: "bg-blue-500",
-    isConnected: false
+    isConnected: false,
+    accountType: "All Account Types",
+    capabilities: ["Post videos", "Manage comments", "Analytics"],
+    limitations: null
   },
   reddit: {
     name: "Reddit",
     icon: "🤖",
     bgColor: "bg-orange-600",
-    isConnected: false
+    isConnected: false,
+    accountType: "All Account Types",
+    capabilities: ["Post to Subreddits", "Manage comments", "Analytics"],
+    limitations: null
+  },
+  discord: {
+    name: "Discord",
+    icon: "💬",
+    bgColor: "bg-indigo-600",
+    isConnected: false,
+    accountType: "Bot Integration",
+    capabilities: ["Send/receive messages", "Manage server content"],
+    limitations: "Server-based only, not personal DMs"
+  },
+  telegram: {
+    name: "Telegram",
+    icon: "✈",
+    bgColor: "bg-blue-500",
+    isConnected: false,
+    accountType: "Bot Integration",
+    capabilities: ["Send/receive messages", "Manage channel content"],
+    limitations: "Public channels/groups only, not personal DMs"
+  },
+  whatsapp: {
+    name: "WhatsApp Business",
+    icon: "📱",
+    bgColor: "bg-green-600",
+    isConnected: false,
+    accountType: "Business Accounts Only",
+    capabilities: ["Send messages", "Manage conversations", "Broadcast messages", "Analytics"],
+    limitations: "Business accounts only, personal WhatsApp not supported"
   },
   threads: {
     name: "Threads",
     icon: "@",
     bgColor: "bg-black",
-    isConnected: false
+    isConnected: false,
+    accountType: "Beta - Limited API",
+    capabilities: ["Basic posting (limited)"],
+    limitations: "Beta status - API functionality may be limited",
+    isBeta: true
   }
 };
 
@@ -110,7 +152,7 @@ export default function PlatformPage() {
   const [activeTab, setActiveTab] = useState("overview");
   const [isAutomationEnabled, setIsAutomationEnabled] = useState(false);
   const [postingSchedule, setPostingSchedule] = useState("3x daily");
-  const [suggestionMethod, setSuggestionMethod] = useState("telegram");
+  const [suggestionMethod, setSuggestionMethod] = useState("email");
   const [contactInfo, setContactInfo] = useState("");
   const [isPaused, setIsPaused] = useState(false);
   
@@ -673,18 +715,7 @@ partnercompany,partners,Strategic partnership opportunity
                           }`}
                         >
                           <span className="text-lg">✈️</span>
-                          <span className="font-medium">Telegram</span>
-                        </button>
-                        <button
-                          onClick={() => setSuggestionMethod("whatsapp")}
-                          className={`p-3 rounded-lg border transition-all flex items-center space-x-3 ${
-                            suggestionMethod === "whatsapp"
-                              ? 'border-green-500 bg-green-500/20 text-white'
-                              : 'border-white/20 bg-white/5 text-gray-300 hover:border-white/30'
-                          }`}
-                        >
-                          <span className="text-lg">📱</span>
-                          <span className="font-medium">WhatsApp</span>
+                          <span className="font-medium">Telegram Bot</span>
                         </button>
                         <button
                           onClick={() => setSuggestionMethod("discord")}
@@ -695,7 +726,29 @@ partnercompany,partners,Strategic partnership opportunity
                           }`}
                         >
                           <span className="text-lg">💬</span>
-                          <span className="font-medium">Discord</span>
+                          <span className="font-medium">Discord Bot</span>
+                        </button>
+                        <button
+                          onClick={() => setSuggestionMethod("whatsapp")}
+                          className={`p-3 rounded-lg border transition-all flex items-center space-x-3 ${
+                            suggestionMethod === "whatsapp"
+                              ? 'border-green-500 bg-green-500/20 text-white'
+                              : 'border-white/20 bg-white/5 text-gray-300 hover:border-white/30'
+                          }`}
+                        >
+                          <span className="text-lg">📱</span>
+                          <span className="font-medium">WhatsApp Business</span>
+                        </button>
+                        <button
+                          onClick={() => setSuggestionMethod("email")}
+                          className={`p-3 rounded-lg border transition-all flex items-center space-x-3 ${
+                            suggestionMethod === "email"
+                              ? 'border-purple-500 bg-purple-500/20 text-white'
+                              : 'border-white/20 bg-white/5 text-gray-300 hover:border-white/30'
+                          }`}
+                        >
+                          <span className="text-lg">📧</span>
+                          <span className="font-medium">Email</span>
                         </button>
                       </div>
                       
@@ -703,8 +756,9 @@ partnercompany,partners,Strategic partnership opportunity
                       <div className="mt-4">
                         <label className="block text-white text-sm font-medium mb-2">
                           {suggestionMethod === "telegram" && "Telegram Username or Phone"}
-                          {suggestionMethod === "whatsapp" && "WhatsApp Phone Number"}
                           {suggestionMethod === "discord" && "Discord Username"}
+                          {suggestionMethod === "whatsapp" && "WhatsApp Business Number"}
+                          {suggestionMethod === "email" && "Email Address"}
                         </label>
                         <input
                           type="text"
@@ -712,12 +766,34 @@ partnercompany,partners,Strategic partnership opportunity
                           onChange={(e) => setContactInfo(e.target.value)}
                           placeholder={
                             suggestionMethod === "telegram" ? "@username or +1234567890" :
+                            suggestionMethod === "discord" ? "username#1234" :
                             suggestionMethod === "whatsapp" ? "+1234567890" :
-                            "username#1234"
+                            "your@email.com"
                           }
                           className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
                         />
                       </div>
+                      
+                      {/* Bot Integration Notice */}
+                      {(suggestionMethod === "telegram" || suggestionMethod === "discord") && (
+                        <div className="mt-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                          <p className="text-blue-300 text-sm">
+                            <span className="font-semibold">Bot Integration:</span> This connects via our official bot, not your personal account. 
+                            {suggestionMethod === "telegram" && " Works with public channels/groups only."}
+                            {suggestionMethod === "discord" && " Works with servers you have access to."}
+                          </p>
+                        </div>
+                      )}
+                      
+                      {/* WhatsApp Business Notice */}
+                      {suggestionMethod === "whatsapp" && (
+                        <div className="mt-3 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+                          <p className="text-green-300 text-sm">
+                            <span className="font-semibold">WhatsApp Business API:</span> This connects to your WhatsApp Business account via official API. 
+                            Personal WhatsApp accounts are not supported for business automation.
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1386,42 +1462,7 @@ partnercompany,partners,Strategic partnership opportunity
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Top Navigation */}
-      <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-                              <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
-            </div>
-            <span className="text-white font-bold text-xl">Campaign.ai</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/accounts" className="text-white hover:text-purple-300 transition-colors">
-              Accounts
-            </Link>
-            <Link href="/posts" className="text-gray-300 hover:text-white transition-colors">
-              Posts
-            </Link>
-            <Link href="/engagement" className="text-gray-300 hover:text-white transition-colors">
-              Engagement
-            </Link>
-            <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
-              Analytics
-            </Link>
-            <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
-              Training
-            </Link>
-            <Link href="/upgrade" className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all text-white">
-              Upgrade to Pro
-            </Link>
-            <button className="text-gray-300 hover:text-white transition-colors">
-              Sign In
-            </button>
-          </div>
-        </div>
-      </nav>
+      <UnifiedNavigation />
 
       <div className="p-6">
         <div className="max-w-7xl mx-auto">

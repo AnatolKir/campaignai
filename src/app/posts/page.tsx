@@ -197,9 +197,9 @@ export default function PostsPage() {
             <p className="text-gray-300">Manage your automated and suggested posts across all platforms</p>
           </div>
           <div className="flex space-x-4">
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
+            <Link href="/create-post" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
               Create Post
-            </button>
+            </Link>
             <button className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-teal-700 transition-all">
               Bulk Actions
             </button>
@@ -259,7 +259,7 @@ export default function PostsPage() {
                 }}
               >
                 <option value="">All Platforms</option>
-                <option value="twitter">Twitter/X</option>
+                <option value="twitter">X</option>
                 <option value="instagram">Instagram</option>
                 <option value="linkedin">LinkedIn</option>
                 <option value="tiktok">TikTok</option>
@@ -478,9 +478,9 @@ export default function PostsPage() {
         {filteredPosts.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-lg mb-4">No posts found matching your criteria</div>
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
+            <Link href="/create-post" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
               Create Your First Post
-            </button>
+            </Link>
           </div>
         )}
       </div>

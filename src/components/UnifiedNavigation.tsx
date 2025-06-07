@@ -102,7 +102,7 @@ export function UnifiedNavigation({ showMobileMenuButton = false, onMobileMenuTo
             )}
 
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/dashboard" className="flex items-center space-x-2">
               <div className="w-8 h-8 flex items-center justify-center">
                 <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
               </div>

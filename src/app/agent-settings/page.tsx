@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSettingsValidation } from "../../hooks/useSettingsValidation";
 import { SettingsValidationAlert } from "../../components/SettingsValidationAlert";
 import { ValidatedRadioGroup, ValidatedCheckbox, ValidatedSelect } from "../../components/ValidatedFormField";
+import { UnifiedNavigation } from "../../components/UnifiedNavigation";
 
 export default function AgentSettings() {
   const [activeSection, setActiveSection] = useState("identity");
@@ -122,24 +123,7 @@ export default function AgentSettings() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Top Navigation */}
-      <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-                              <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
-            </div>
-            <span className="text-white font-bold text-xl">Campaign.ai</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-              ← Back to Dashboard
-            </Link>
-            <button className="bg-gradient-to-r from-green-600 to-emerald-600 px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all text-white">
-              Save Changes
-            </button>
-          </div>
-        </div>
-      </nav>
+      <UnifiedNavigation />
 
       <div className="flex h-screen">
         {/* Left Sidebar - Section Navigation */}
@@ -1100,7 +1084,7 @@ export default function AgentSettings() {
                 <div className="mt-8">
                   <label className="block text-white font-semibold mb-3">Preferred Platforms</label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {["Twitter", "LinkedIn", "Instagram", "TikTok", "YouTube", "Discord"].map((platform) => (
+                    {["X", "LinkedIn", "Instagram", "TikTok", "YouTube", "Discord"].map((platform) => (
                       <label key={platform} className="flex items-center space-x-2 p-3 bg-white/5 rounded-lg hover:bg-white/10 cursor-pointer transition-colors">
                         <input type="checkbox" className="text-purple-500 rounded" />
                         <span className="text-white text-sm">{platform}</span>

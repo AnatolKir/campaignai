@@ -173,7 +173,7 @@ export default function CompetitiveIntelligencePage() {
 
   // Available platforms for competitor management
   const platforms = [
-    { id: 'twitter', name: 'Twitter/X', icon: '𝕏', color: 'bg-black' },
+    { id: 'twitter', name: 'X', icon: '𝕏', color: 'bg-black' },
     { id: 'instagram', name: 'Instagram', icon: '📷', color: 'bg-gradient-to-r from-purple-500 to-pink-500' },
     { id: 'linkedin', name: 'LinkedIn', icon: 'in', color: 'bg-blue-600' },
     { id: 'tiktok', name: 'TikTok', icon: '🎵', color: 'bg-black' },
@@ -594,6 +594,42 @@ export default function CompetitiveIntelligencePage() {
         ))}
       </div>
 
+      {/* Target Accounts Tool Instructions - Always Visible */}
+      {(selectedCategory === '' || selectedCategory) && (
+        <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-6">
+          <div className="flex items-start space-x-4">
+            <div className="text-4xl">🎯</div>
+            <div className="flex-1">
+              <h3 className="text-purple-400 font-bold text-lg mb-2">
+                {selectedCategory === '' 
+                  ? 'Add More Competitors Across All Categories'
+                  : `Add More ${categories.find(cat => cat.id === selectedCategory)?.name || 'Competitors'}`
+                }
+              </h3>
+              <p className="text-gray-300 mb-3">
+                Use the <span className="text-purple-400 font-medium underline">Target Accounts tool</span> to add competitors for analysis
+              </p>
+              <div className="bg-white/5 rounded-lg p-4 mb-4">
+                <div className="text-purple-400 font-medium text-sm mb-2">📍 Quick Steps:</div>
+                <ol className="text-gray-300 text-sm space-y-1">
+                  <li>1. Click "Add Competitors" button above</li>
+                  <li>2. Choose your platform (X, Instagram, etc.)</li>
+                  <li>3. Add competitor handles in Target Accounts tool</li>
+                  <li>4. Return here to categorize them (Direct, Market Leaders, etc.)</li>
+                  <li>5. Get insights, reports, and competitive analysis!</li>
+                </ol>
+              </div>
+              <button 
+                onClick={() => setShowPlatformSelector(true)}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-semibold"
+              >
+                Add Competitors Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Competitors Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCompetitors.length === 0 ? (
@@ -607,7 +643,7 @@ export default function CompetitiveIntelligencePage() {
               <div className="text-white font-medium text-sm mb-2">📍 Quick Steps:</div>
               <ol className="text-gray-300 text-sm space-y-1">
                 <li>1. Click "Add Competitors" button above</li>
-                <li>2. Choose your platform (Twitter, Instagram, etc.)</li>
+                <li>2. Choose your platform (X, Instagram, etc.)</li>
                 <li>3. Add competitor handles in Target Accounts tool</li>
                 <li>4. Return here to categorize them (Direct, Market Leaders, etc.)</li>
                 <li>5. Get insights, reports, and competitive analysis!</li>

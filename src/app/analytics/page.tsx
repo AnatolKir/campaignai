@@ -19,7 +19,7 @@ export default function AnalyticsPage() {
   ];
 
   const platformMetrics = [
-    { platform: "Twitter/X", followers: "18.4K", growth: "+8.2%", engagement: "5.2%", color: "bg-black" },
+    { platform: "X", followers: "18.4K", growth: "+8.2%", engagement: "5.2%", color: "bg-black" },
     { platform: "Instagram", followers: "15.7K", growth: "+15.1%", engagement: "6.8%", color: "bg-gradient-to-r from-purple-500 to-pink-500" },
     { platform: "LinkedIn", followers: "8.9K", growth: "+22.3%", engagement: "3.4%", color: "bg-blue-600" },
     { platform: "TikTok", followers: "4.2K", growth: "+45.7%", engagement: "8.1%", color: "bg-gray-800" }
@@ -93,7 +93,7 @@ export default function AnalyticsPage() {
             className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:border-purple-500 focus:outline-none"
           >
             <option value="all">All Platforms</option>
-            <option value="twitter">Twitter/X</option>
+                                <option value="twitter">X</option>
             <option value="instagram">Instagram</option>
             <option value="linkedin">LinkedIn</option>
             <option value="tiktok">TikTok</option>

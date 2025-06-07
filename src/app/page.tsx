@@ -71,7 +71,7 @@ export default function Home() {
               <div className="text-gray-300 text-sm">AI Agent Activity</div>
             </div>
             <div className="bg-gradient-to-br from-green-900/30 to-blue-900/30 backdrop-blur-lg rounded-2xl p-4 sm:p-6 border border-white/20">
-              <div className="text-2xl sm:text-4xl font-bold text-white mb-2">9+</div>
+              <div className="text-2xl sm:text-4xl font-bold text-white mb-2">10+</div>
               <div className="text-gray-300 text-sm">Social Platforms</div>
             </div>
             <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 backdrop-blur-lg rounded-2xl p-4 sm:p-6 border border-white/20">

@@ -7,58 +7,88 @@ import { UnifiedNavigation } from "../../components/UnifiedNavigation";
 export default function AccountsPage() {
   const socialPlatforms = [
     {
-      id: "twitter",
-      name: "Twitter/X",
-      icon: "𝕏",
-      bgColor: "bg-black",
-      status: "active",
-      followers: "12.3K",
-      engagement: "4.2%"
-    },
-    {
-      id: "instagram", 
+      id: "instagram",
       name: "Instagram",
       icon: "📷",
       bgColor: "bg-gradient-to-r from-purple-500 to-pink-500",
       status: "active",
       followers: "8.7K",
-      engagement: "6.8%"
+      engagement: "6.8%",
+      accountType: "Business/Creator Only",
+      capabilities: ["Post content", "Manage comments", "Manage DMs", "Analytics"],
+      limitations: "Personal accounts not supported"
+    },
+    {
+      id: "twitter",
+      name: "X",
+      icon: "𝕏",
+      bgColor: "bg-black",
+      status: "active",
+      followers: "12.3K",
+      engagement: "4.2%",
+      accountType: "All Account Types",
+      capabilities: ["Post content", "Manage comments/replies", "Manage DMs", "Analytics"],
+      limitations: null
     },
     {
       id: "linkedin",
-      name: "LinkedIn", 
+      name: "LinkedIn",
       icon: "in",
       bgColor: "bg-blue-600",
       status: "active",
       followers: "3.2K",
-      engagement: "3.1%"
+      engagement: "3.1%",
+      accountType: "Company Pages Only",
+      capabilities: ["Post content", "Manage comments", "Analytics"],
+      limitations: "Personal profiles not supported"
     },
     {
       id: "tiktok",
       name: "TikTok",
-      icon: "🎵", 
+      icon: "🎵",
       bgColor: "bg-black",
       status: "disconnected",
       followers: "0",
-      engagement: "0%"
+      engagement: "0%",
+      accountType: "Business/Creator Only",
+      capabilities: ["Post content", "Manage comments", "Analytics"],
+      limitations: "Personal accounts not supported"
     },
     {
       id: "youtube",
       name: "YouTube",
       icon: "▶",
-      bgColor: "bg-red-600", 
+      bgColor: "bg-red-600",
       status: "disconnected",
       followers: "0",
-      engagement: "0%"
+      engagement: "0%",
+      accountType: "All Account Types",
+      capabilities: ["Post videos", "Manage comments", "Analytics"],
+      limitations: null
+    },
+    {
+      id: "reddit",
+      name: "Reddit",
+      icon: "🤖",
+      bgColor: "bg-orange-600",
+      status: "disconnected",
+      followers: "0",
+      engagement: "0%",
+      accountType: "All Account Types",
+      capabilities: ["Post to Subreddits", "Manage comments", "Analytics"],
+      limitations: null
     },
     {
       id: "discord",
       name: "Discord",
       icon: "💬",
       bgColor: "bg-indigo-600",
-      status: "disconnected", 
+      status: "disconnected",
       followers: "0",
-      engagement: "0%"
+      engagement: "0%",
+      accountType: "Bot Integration",
+      capabilities: ["Send/receive messages", "Manage server content"],
+      limitations: "Server-based only, not personal DMs"
     },
     {
       id: "telegram",
@@ -66,17 +96,23 @@ export default function AccountsPage() {
       icon: "✈",
       bgColor: "bg-blue-500",
       status: "disconnected",
-      followers: "0", 
-      engagement: "0%"
+      followers: "0",
+      engagement: "0%",
+      accountType: "Bot Integration",
+      capabilities: ["Send/receive messages", "Manage channel content"],
+      limitations: "Public channels/groups only, not personal DMs"
     },
     {
-      id: "reddit",
-      name: "Reddit", 
-      icon: "🤖",
-      bgColor: "bg-orange-600",
+      id: "whatsapp",
+      name: "WhatsApp Business",
+      icon: "📱",
+      bgColor: "bg-green-600",
       status: "disconnected",
       followers: "0",
-      engagement: "0%"
+      engagement: "0%",
+      accountType: "Business Accounts Only",
+      capabilities: ["Send messages", "Manage conversations", "Broadcast messages", "Analytics"],
+      limitations: "Business accounts only, personal WhatsApp not supported"
     },
     {
       id: "threads",
@@ -85,7 +121,11 @@ export default function AccountsPage() {
       bgColor: "bg-black",
       status: "disconnected",
       followers: "0",
-      engagement: "0%"
+      engagement: "0%",
+      accountType: "Beta - Limited API",
+      capabilities: ["Basic posting (limited)"],
+      limitations: "Beta status - API functionality may be limited",
+      isBeta: true
     }
   ];
 
@@ -199,8 +239,11 @@ export default function AccountsPage() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-3">
-                    <div className={`w-12 h-12 ${platform.bgColor} rounded-xl flex items-center justify-center`}>
+                    <div className={`w-12 h-12 ${platform.bgColor} rounded-xl flex items-center justify-center relative`}>
                       <span className="text-white font-bold text-lg">{platform.icon}</span>
+                      {platform.isBeta && (
+                        <span className="absolute -top-1 -right-1 bg-yellow-500 text-black text-xs px-1 rounded-full font-bold">β</span>
+                      )}
                     </div>
                     <div>
                       <h3 className="text-white font-semibold text-lg">{platform.name}</h3>
@@ -219,6 +262,34 @@ export default function AccountsPage() {
                       <span className="text-gray-400 text-xs">{platform.engagement} engagement</span>
                     )}
                   </div>
+                </div>
+
+                {/* Account Type and Capabilities */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-purple-300 font-medium">{platform.accountType}</span>
+                    {platform.isBeta && (
+                      <span className="text-xs text-yellow-400 font-medium">BETA</span>
+                    )}
+                  </div>
+                  <div className="space-y-1">
+                    {platform.capabilities.slice(0, 2).map((capability, index) => (
+                      <div key={index} className="flex items-center text-xs text-gray-300">
+                        <span className="text-green-400 mr-2">✓</span>
+                        {capability}
+                      </div>
+                    ))}
+                    {platform.capabilities.length > 2 && (
+                      <div className="text-xs text-gray-400">
+                        +{platform.capabilities.length - 2} more features
+                      </div>
+                    )}
+                  </div>
+                  {platform.limitations && (
+                    <div className="mt-2 text-xs text-orange-300 bg-orange-500/10 rounded px-2 py-1">
+                      ⚠️ {platform.limitations}
+                    </div>
+                  )}
                 </div>
 
                 <div className="border-t border-white/10 pt-4">

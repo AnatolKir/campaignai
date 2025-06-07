@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { UnifiedNavigation } from "../../components/UnifiedNavigation";
 import { CampaignDraft, CreatorProfile, AdvertiserMetrics } from "@/types/monetization";
 
 export default function AdvertisePage() {
@@ -15,7 +16,7 @@ export default function AdvertisePage() {
       description: "Promote our new smartwatch to tech enthusiasts",
       content: "Experience the future on your wrist! Our new smartwatch combines cutting-edge technology with sleek design. #TechInnovation #SmartWatch #FutureTech",
       requirements: ["Tech/Gadget content creator", "Professional content quality", "Minimum 10K followers"],
-      platforms: ["Instagram", "Twitter/X", "TikTok"],
+      platforms: ["Instagram", "X", "TikTok"],
       category: "Technology",
       budget: {
         total: 5000,
@@ -23,7 +24,7 @@ export default function AdvertisePage() {
         currency: "USD"
       },
       targeting: {
-        minFollowers: { "Instagram": 10000, "Twitter/X": 5000, "TikTok": 15000 },
+        minFollowers: { "Instagram": 10000, "X": 5000, "TikTok": 15000 },
         categories: ["Technology", "Gadgets", "Lifestyle"],
         minEngagementRate: 3.0
       },
@@ -52,8 +53,8 @@ export default function AdvertisePage() {
       displayName: "Sarah Tech",
       avatar: "👩‍💻",
       verified: true,
-      followers: { "Instagram": 85000, "Twitter/X": 45000, "TikTok": 120000 },
-      engagementRate: { "Instagram": 4.2, "Twitter/X": 3.8, "TikTok": 5.1 },
+      followers: { "Instagram": 85000, "X": 45000, "TikTok": 120000 },
+      engagementRate: { "Instagram": 4.2, "X": 3.8, "TikTok": 5.1 },
       categories: ["Technology", "Gadgets", "Reviews"],
       location: "San Francisco, CA",
       languages: ["English"],
@@ -61,7 +62,7 @@ export default function AdvertisePage() {
       completedCampaigns: 42,
       rating: 4.9,
       responseTime: "2-4 hours",
-      platforms: ["Instagram", "Twitter/X", "TikTok"],
+      platforms: ["Instagram", "X", "TikTok"],
       demographics: {
         ageRange: "25-34",
         genderSplit: { "Male": 60, "Female": 40 },
@@ -91,55 +92,14 @@ export default function AdvertisePage() {
     platformBreakdown: {
       "Instagram": { campaigns: 12, spent: 25000, reach: 1500000, engagement: 75000 },
       "TikTok": { campaigns: 8, spent: 15000, reach: 800000, engagement: 40000 },
-      "Twitter/X": { campaigns: 6, spent: 5000, reach: 200000, engagement: 10000 }
+      "X": { campaigns: 6, spent: 5000, reach: 200000, engagement: 10000 }
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Top Navigation */}
-      <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-                              <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
-            </div>
-            <span className="text-white font-bold text-xl">Campaign.ai</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/accounts" className="text-gray-300 hover:text-white transition-colors">
-              Accounts
-            </Link>
-            <Link href="/posts" className="text-gray-300 hover:text-white transition-colors">
-              Posts
-            </Link>
-            <Link href="/engagement" className="text-gray-300 hover:text-white transition-colors">
-              Engagement
-            </Link>
-            <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
-              Analytics
-            </Link>
-            <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
-              Monetize
-            </Link>
-            <Link href="/advertise" className="text-white hover:text-purple-300 transition-colors">
-              Advertise
-            </Link>
-            <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
-              Training
-            </Link>
-            <Link href="/upgrade" className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all text-white">
-              Upgrade to Pro
-            </Link>
-            <button className="text-gray-300 hover:text-white transition-colors">
-              Sign In
-            </button>
-          </div>
-        </div>
-      </nav>
+      <UnifiedNavigation />
 
       <div className="flex h-screen">
         {/* Left Sidebar - Advertiser Menu */}
@@ -442,7 +402,7 @@ export default function AdvertisePage() {
                     <select multiple className="w-full bg-white/10 text-white rounded-lg px-4 py-3 border border-white/20 focus:border-purple-500 focus:outline-none">
                       <option>Instagram</option>
                       <option>TikTok</option>
-                      <option>Twitter/X</option>
+                      <option>X</option>
                       <option>LinkedIn</option>
                       <option>YouTube</option>
                     </select>
@@ -494,7 +454,7 @@ export default function AdvertisePage() {
                       <option>All Platforms</option>
                       <option>Instagram</option>
                       <option>TikTok</option>
-                      <option>Twitter/X</option>
+                      <option>X</option>
                       <option>YouTube</option>
                     </select>
                   </div>

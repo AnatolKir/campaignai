@@ -85,7 +85,7 @@ export default function EngagementPage() {
             className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:border-purple-500 focus:outline-none"
           >
             <option value="all">All Platforms</option>
-            <option value="twitter">Twitter/X</option>
+                            <option value="twitter">X</option>
             <option value="instagram">Instagram</option>
             <option value="linkedin">LinkedIn</option>
             <option value="tiktok">TikTok</option>

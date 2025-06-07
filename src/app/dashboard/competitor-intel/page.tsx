@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
+import { UnifiedNavigation } from "../../../components/UnifiedNavigation";
 
 interface CompetitorAccount {
   id: string;
@@ -21,6 +22,7 @@ type SocialPlatform =
   | "discord" 
   | "telegram" 
   | "reddit" 
+  | "whatsapp"
   | "threads";
 
 interface PlatformConfig {
@@ -33,7 +35,7 @@ interface PlatformConfig {
 
 const PLATFORM_CONFIGS: Record<SocialPlatform, PlatformConfig> = {
   twitter: {
-    name: "Twitter/X",
+    name: "X",
     icon: "𝕏",
     color: "bg-black",
     placeholder: "@username, https://x.com/username, username",
@@ -116,6 +118,16 @@ const PLATFORM_CONFIGS: Record<SocialPlatform, PlatformConfig> = {
       /(?:https?:\/\/)?(?:www\.)?reddit\.com\/u\/([a-zA-Z0-9_-]+)/g,
       /u\/([a-zA-Z0-9_-]+)/g,
       /^([a-zA-Z0-9_-]+)$/g
+    ]
+  },
+  whatsapp: {
+    name: "WhatsApp Business",
+    icon: "📱",
+    color: "bg-green-600",
+    placeholder: "+1234567890, business account number",
+    patterns: [
+      /\+?(\d{1,4})?[-.\s]?\(?(\d{1,3})\)?[-.\s]?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})/g,
+      /^(\d{10,15})$/g
     ]
   },
   threads: {
@@ -290,39 +302,7 @@ export default function CompetitorIntel() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Top Navigation */}
-      <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-                              <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
-            </div>
-            <span className="text-white font-bold text-xl">Campaign.ai</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/posts" className="text-gray-300 hover:text-white transition-colors">
-              Posts
-            </Link>
-            <Link href="/engagement" className="text-gray-300 hover:text-white transition-colors">
-              Engagement
-            </Link>
-            <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
-              Analytics
-            </Link>
-            <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
-              Training
-            </Link>
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all">
-              Upgrade to Pro
-            </button>
-            <button className="text-gray-300 hover:text-white transition-colors">
-              Sign In
-            </button>
-          </div>
-        </div>
-      </nav>
+      <UnifiedNavigation />
 
       <div className="p-6">
         {/* Header */}
