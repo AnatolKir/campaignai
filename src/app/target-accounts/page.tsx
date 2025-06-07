@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import TargetAccounts from '../../components/TargetAccounts';
 import Link from 'next/link';

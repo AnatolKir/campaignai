@@ -11,10 +11,35 @@ import {
 import { normalizeHandle, validateHandle } from '../utils/handle-parser';
 import { Platform } from '../utils/ai_platform_formatter';
 
-const supabase = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+// Handle missing environment variables gracefully during build
+let supabase: any = null;
+
+if (supabaseUrl && supabaseKey) {
+  supabase = createBrowserClient<Database>(supabaseUrl, supabaseKey);
+} else {
+  // Create a mock client for build time when env vars are not available
+  supabase = {
+    from: () => ({
+      insert: () => ({ select: () => ({ single: () => Promise.resolve({ data: null, error: new Error('Supabase not configured') }) }) }),
+      select: () => ({ eq: () => ({ single: () => Promise.resolve({ data: null, error: new Error('Supabase not configured') }) }) }),
+      update: () => ({ eq: () => ({ select: () => ({ single: () => Promise.resolve({ data: null, error: new Error('Supabase not configured') }) }) }) }),
+      delete: () => ({ eq: () => Promise.resolve({ error: new Error('Supabase not configured') }) }),
+      or: () => ({ order: () => ({ order: () => ({ limit: () => Promise.resolve({ data: [], error: new Error('Supabase not configured') }) }) }) }),
+      ilike: () => ({ order: () => Promise.resolve({ data: [], error: new Error('Supabase not configured') }) }),
+      order: () => ({ order: () => ({ limit: () => Promise.resolve({ data: [], error: new Error('Supabase not configured') }) }) })
+    })
+  };
+}
+
+/**
+ * Check if Supabase is properly configured
+ */
+function isSupabaseConfigured(): boolean {
+  return !!(supabaseUrl && supabaseKey);
+}
 
 /**
  * Create a new handle record in the database
@@ -114,6 +139,11 @@ export async function upsertHandleRecord(data: CreateHandleRecord): Promise<Hand
  */
 export async function searchHandles(query: string, limit: number = 10): Promise<HandleSearchResult[]> {
   try {
+    if (!isSupabaseConfigured()) {
+      console.warn('Supabase not configured - please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables');
+      return [];
+    }
+    
     const searchTerm = `%${query.toLowerCase()}%`;
     
     const { data, error } = await supabase
