@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useBrand } from '../../contexts/BrandContext';
-import { AppNavigation } from '../../components/AppNavigation';
+import { UnifiedNavigation } from '../../components/UnifiedNavigation';
 import { CreateBrandModal } from '../../components/CreateBrandModal';
 
 export default function BrandSettingsPage() {
@@ -35,7 +35,7 @@ export default function BrandSettingsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
-      <AppNavigation />
+      <UnifiedNavigation />
       
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header */}

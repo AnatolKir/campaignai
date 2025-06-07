@@ -1,95 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { UnifiedNavigation } from "../components/UnifiedNavigation";
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/30 backdrop-blur-xl border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 flex items-center justify-center">
-                <img src="/logo-32.png" alt="Campaign.ai" className="w-10 h-10" />
-              </div>
-              <span className="text-white font-bold text-xl">Campaign.ai</span>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <Link href="#features" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Features
-              </Link>
-              <Link href="#screenshots" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Demo
-              </Link>
-              <Link href="#pricing" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Pricing
-              </Link>
-              <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Monetize
-              </Link>
-              <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Advertise
-              </Link>
-              <div className="h-6 w-px bg-white/20"></div>
-              <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Sign In
-              </Link>
-              <Link href="/dashboard" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2.5 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 font-semibold shadow-lg">
-                Start Free Trial
-              </Link>
-            </div>
-
-            {/* Mobile menu button */}
-            <button 
-              className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          {isMenuOpen && (
-            <div className="lg:hidden mt-4 pb-4 border-t border-white/10">
-              <div className="flex flex-col space-y-3 pt-4">
-                <Link href="#features" className="text-gray-300 hover:text-white transition-colors py-2 font-medium">
-                  Features
-                </Link>
-                <Link href="#screenshots" className="text-gray-300 hover:text-white transition-colors py-2 font-medium">
-                  Demo
-                </Link>
-                <Link href="#pricing" className="text-gray-300 hover:text-white transition-colors py-2 font-medium">
-                  Pricing
-                </Link>
-                <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors py-2 font-medium">
-                  Monetize
-                </Link>
-                <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors py-2 font-medium">
-                  Advertise
-                </Link>
-                <div className="h-px bg-white/10 my-2"></div>
-                <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors py-2 font-medium">
-                  Sign In
-                </Link>
-                <Link href="/dashboard" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 text-center font-semibold shadow-lg">
-                  Start Free Trial
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <UnifiedNavigation variant="landing" />
 
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6">
+      <section className="pt-16 sm:pt-20 pb-16 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-12">
             {/* Badge */}

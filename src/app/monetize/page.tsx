@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Offer, Earning } from "@/types/monetization";
+import { UnifiedNavigation } from "../../components/UnifiedNavigation";
 
 export default function MonetizePage() {
   const [activeSection, setActiveSection] = useState("offers");
@@ -140,45 +141,7 @@ export default function MonetizePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Top Navigation */}
-      <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">C</span>
-            </div>
-            <span className="text-white font-bold text-xl">Campaign.ai</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/accounts" className="text-gray-300 hover:text-white transition-colors">
-              Accounts
-            </Link>
-            <Link href="/posts" className="text-gray-300 hover:text-white transition-colors">
-              Posts
-            </Link>
-            <Link href="/engagement" className="text-gray-300 hover:text-white transition-colors">
-              Engagement
-            </Link>
-            <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
-              Analytics
-            </Link>
-            <Link href="/monetize" className="text-white hover:text-purple-300 transition-colors">
-              Monetize
-            </Link>
-            <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
-              Training
-            </Link>
-            <Link href="/upgrade" className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all text-white">
-              Upgrade to Pro
-            </Link>
-            <button className="text-gray-300 hover:text-white transition-colors">
-              Sign In
-            </button>
-          </div>
-        </div>
-      </nav>
+      <UnifiedNavigation />
 
       <div className="flex h-screen">
         {/* Left Sidebar - Monetization Menu */}
