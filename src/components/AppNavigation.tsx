@@ -57,6 +57,9 @@ export function AppNavigation({ onMobileMenuToggle, showMobileMenuButton = false
           <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
             Analytics
           </Link>
+          <Link href="/competitive-intelligence" className="text-gray-300 hover:text-white transition-colors">
+            Competitive Intel
+          </Link>
           <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
             Monetize
           </Link>

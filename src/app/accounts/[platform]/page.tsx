@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 interface PlatformData {
@@ -103,6 +103,7 @@ const platformsData: Record<string, PlatformData> = {
 
 export default function PlatformPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const platform = params.platform as string;
   const platformData = platformsData[platform];
 
@@ -125,6 +126,31 @@ export default function PlatformPage() {
   ]);
   const [filterCategory, setFilterCategory] = useState("all");
   const [manualUsername, setManualUsername] = useState("");
+
+  // Handle URL parameters for direct linking from competitive intelligence
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    const category = searchParams.get('category');
+    const focus = searchParams.get('focus');
+
+    if (tab === 'targets') {
+      setActiveTab('targets');
+    }
+    
+    if (category === 'competitors') {
+      setSelectedCategory('competitors');
+    }
+
+    // Auto-scroll and highlight the competitors section if focus=true
+    if (focus === 'true' && category === 'competitors') {
+      setTimeout(() => {
+        const element = document.querySelector('[data-competitors-highlight]');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 500);
+    }
+  }, [searchParams]);
 
   // Account categories for targeting
   const accountCategories = [
@@ -462,7 +488,6 @@ partnercompany,partners,Strategic partnership opportunity
     { id: "overview", label: "Overview" },
     { id: "automation", label: "AI Automation" },
     { id: "targets", label: "Target Accounts" },
-    { id: "competitors", label: "Competitors" },
     { id: "analytics", label: "Analytics" },
     { id: "settings", label: "Settings" }
   ];
@@ -781,6 +806,44 @@ partnercompany,partners,Strategic partnership opportunity
       case "targets":
         return (
           <div className="space-y-6">
+            {/* Competitor Management Notice */}
+            <div className={`bg-red-500/10 border border-red-500/30 rounded-xl p-6 ${
+              searchParams.get('focus') === 'true' && searchParams.get('category') === 'competitors' 
+                ? 'animate-pulse ring-4 ring-red-400/50' 
+                : ''
+            }`} data-competitors-highlight>
+              <div className="flex items-start space-x-4">
+                <div className="text-4xl">🎯</div>
+                <div className="flex-1">
+                  <h3 className="text-red-400 font-bold text-lg mb-2">
+                    🔥 COMPETITOR MANAGEMENT IS HERE!
+                  </h3>
+                  <p className="text-gray-300 mb-3">
+                    <strong>Add competitors in 3 simple steps:</strong>
+                  </p>
+                  <ol className="text-gray-300 space-y-1 mb-4">
+                    <li>1. Choose any import method below (Paste, CSV, TXT, or Manual)</li>
+                    <li>2. Select <strong className="text-red-400">"Competitors"</strong> from the category dropdown</li>
+                    <li>3. Add your competitor handles and you're done!</li>
+                  </ol>
+                  <div className="bg-red-500/20 rounded-lg p-3">
+                    <p className="text-red-300 text-sm mb-2">
+                      💡 <strong>Pro tip:</strong> Once added here, you can:
+                    </p>
+                    <ol className="text-red-300 text-sm space-y-1 ml-4">
+                      <li>1. Further categorize them as "Direct Competitors," "Market Leaders," etc.</li>
+                      <li>2. View detailed competitive analysis and insights</li>
+                    </ol>
+                    <p className="text-red-300 text-sm mt-2">
+                      Visit <Link href="/competitive-intelligence" className="text-red-300 hover:text-red-200 underline font-bold">
+                        Competitive Intelligence
+                      </Link> to organize and analyze your competitors.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Import Methods */}
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
               <h3 className="text-xl font-semibold text-white mb-4">Add Target Accounts</h3>
@@ -824,7 +887,10 @@ partnercompany,partners,Strategic partnership opportunity
                     <option value="" className="bg-gray-800 text-gray-400">
                       Choose one...
                     </option>
-                    {accountCategories.map((category) => (
+                    <option value="competitors" className="bg-red-600 text-white font-bold">
+                      🔥 COMPETITORS - Accounts to monitor and analyze (RECOMMENDED FOR COMPETITIVE INTEL)
+                    </option>
+                    {accountCategories.filter(cat => cat.id !== 'competitors').map((category) => (
                       <option key={category.id} value={category.id} className="bg-gray-800">
                         {category.label} - {category.description}
                       </option>
@@ -832,6 +898,13 @@ partnercompany,partners,Strategic partnership opportunity
                   </select>
                   {!selectedCategory && (
                     <p className="text-red-400 text-sm mt-1">Please select a category for your accounts</p>
+                  )}
+                  {selectedCategory === 'competitors' && (
+                    <div className="mt-2 p-3 bg-red-500/20 rounded-lg border border-red-500/30">
+                      <p className="text-red-300 text-sm">
+                        ✅ <strong>Perfect choice!</strong> Competitors added here will automatically appear in your Competitive Intelligence dashboard.
+                      </p>
+                    </div>
                   )}
                 </div>
               )}
@@ -992,7 +1065,25 @@ partnercompany,partners,Strategic partnership opportunity
               
               {/* Category Legend */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
-                {accountCategories.map((category) => {
+                {/* Competitors category - highlighted */}
+                {(() => {
+                  const competitorsCategory = accountCategories.find(cat => cat.id === 'competitors');
+                  const competitorsCount = targetAccounts.filter(acc => acc.category === 'competitors').length;
+                  if (competitorsCategory) {
+                    return (
+                      <div className="flex items-center space-x-2 p-2 bg-red-500/20 rounded-lg border border-red-500/30">
+                        <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+                        <span className="text-red-300 text-xs font-bold">
+                          {competitorsCategory.label} ({competitorsCount}) 🔥
+                        </span>
+                      </div>
+                    );
+                  }
+                  return null;
+                })()}
+                
+                {/* Other categories */}
+                {accountCategories.filter(cat => cat.id !== 'competitors').map((category) => {
                   const count = targetAccounts.filter(acc => acc.category === category.id).length;
                   return (
                     <div key={category.id} className="flex items-center space-x-2">
@@ -1087,66 +1178,7 @@ partnercompany,partners,Strategic partnership opportunity
           </div>
         );
 
-      case "competitors":
-        return (
-          <div className="space-y-6">
-            {/* Add Competitor */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-              <h3 className="text-xl font-semibold text-white mb-4">Track Competitors</h3>
-              <div className="flex space-x-4">
-                <input
-                  type="text"
-                  placeholder="Enter competitor's username"
-                  className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none"
-                />
-                <button className="bg-gradient-to-r from-orange-600 to-red-600 px-6 py-2 rounded-lg text-white hover:from-orange-700 hover:to-red-700 transition-all">
-                  Track
-                </button>
-              </div>
-            </div>
 
-            {/* Competitor List */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-              <h4 className="text-lg font-semibold text-white mb-4">Tracked Competitors</h4>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-sm">CA</span>
-                    </div>
-                    <div>
-                      <h5 className="text-white font-semibold">@CompetitorA</h5>
-                      <p className="text-gray-400 text-sm">Last post: 2 hours ago • Engagement: 5.2%</p>
-                    </div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <button className="bg-blue-600 px-4 py-2 rounded-lg text-white text-sm hover:bg-blue-700 transition-colors">
-                      View Report
-                    </button>
-                    <button className="text-red-400 hover:text-red-300 text-sm">Remove</button>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-sm">CB</span>
-                    </div>
-                    <div>
-                      <h5 className="text-white font-semibold">@CompetitorB</h5>
-                      <p className="text-gray-400 text-sm">Last post: 5 hours ago • Engagement: 3.8%</p>
-                    </div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <button className="bg-blue-600 px-4 py-2 rounded-lg text-white text-sm hover:bg-blue-700 transition-colors">
-                      View Report
-                    </button>
-                    <button className="text-red-400 hover:text-red-300 text-sm">Remove</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
 
       case "analytics":
         return (
