@@ -34,6 +34,28 @@ export interface PlatformSpecificMention {
 }
 
 /**
+ * Crop data for platform-specific image cropping
+ */
+export interface CropData {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  aspectRatio: number;
+  platformId: string;
+}
+
+/**
+ * Processed image data with different versions
+ */
+export interface ProcessedImage {
+  original: string; // Original image URL
+  preview: string; // Small preview for UI
+  cropped: Record<string, string>; // Platform-specific cropped versions
+  compressed: Record<string, string>; // Platform-specific compressed versions
+}
+
+/**
  * Media file information
  */
 export interface MediaFile {
@@ -43,6 +65,10 @@ export interface MediaFile {
   preview?: string;
   size: number;
   name: string;
+  // Image cropping data
+  cropData?: Record<string, CropData>; // Platform-specific crop data
+  processedImages?: ProcessedImage; // Processed image URLs
+  isProcessing?: boolean; // Whether the image is being processed
 }
 
 /**
@@ -119,6 +145,15 @@ export interface RichTextEditorConfig {
   };
   autoSave: boolean;
   spellCheck: boolean;
+}
+
+/**
+ * Auto-save status for drafts
+ */
+export interface AutoSaveStatus {
+  lastSaved?: Date;
+  status: 'idle' | 'saving' | 'saved' | 'error';
+  message?: string;
 }
 
 /**

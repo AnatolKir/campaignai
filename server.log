@@ -1,0 +1,116 @@
+
+> campaign-ai@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.43:3000
+
+ ✓ Starting...
+ ✓ Ready in 1144ms
+ ○ Compiling /create-post ...
+ ✓ Compiled /create-post in 2.7s (1032 modules)
+ GET /create-post 200 in 2984ms
+ ✓ Compiled / in 256ms (1030 modules)
+ GET / 200 in 358ms
+ GET /create-post 200 in 177ms
+ GET /create-post 200 in 75ms
+ ✓ Compiled /_not-found in 482ms (1015 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 610ms
+ ✓ Compiled /favicon.ico in 185ms (597 modules)
+ GET /favicon.ico 200 in 257ms
+ ✓ Compiled / in 74ms (602 modules)
+ GET / 200 in 219ms
+ ✓ Compiled in 392ms (1025 modules)
+ GET /create-post 200 in 189ms
+ ✓ Compiled in 196ms (1025 modules)
+ ✓ Compiled in 270ms (1025 modules)
+ ✓ Compiled in 168ms (1025 modules)
+ ✓ Compiled in 174ms (1025 modules)
+ ✓ Compiled in 177ms (1025 modules)
+ ✓ Compiled in 194ms (1025 modules)
+ ✓ Compiled in 149ms (1025 modules)
+ GET /create-post 200 in 300ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 872ms (1029 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1001ms
+ ✓ Compiled /favicon.ico in 163ms (597 modules)
+ GET /favicon.ico 200 in 243ms
+ GET /create-post? 200 in 247ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 53ms
+ GET /create-post? 200 in 44ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 32ms
+ ✓ Compiled in 452ms (1025 modules)
+ GET /create-post 200 in 84ms
+ ✓ Compiled /_not-found in 157ms (1015 modules)
+ GET /site.webmanifest 404 in 271ms
+ ✓ Compiled in 193ms (448 modules)
+ GET /create-post 200 in 29ms
+ GET /site.webmanifest 404 in 63ms
+ ✓ Compiled in 131ms (448 modules)
+ GET /create-post 200 in 12ms
+ GET /site.webmanifest 404 in 19ms
+ ✓ Compiled in 123ms (448 modules)
+ GET /create-post 200 in 8ms
+ GET /site.webmanifest 404 in 35ms
+ ✓ Compiled in 169ms (448 modules)
+ GET /create-post 200 in 14ms
+ GET /site.webmanifest 404 in 22ms
+ ✓ Compiled in 138ms (448 modules)
+ GET /create-post 200 in 115ms
+ ✓ Compiled in 126ms (448 modules)
+ GET /create-post 200 in 11ms
+ GET /site.webmanifest 404 in 25ms
+ ✓ Compiled in 161ms (448 modules)
+ GET /create-post 200 in 12ms
+ ✓ Compiled in 182ms (1015 modules)
+ ✓ Compiled in 121ms (448 modules)
+ ✓ Compiled in 122ms (448 modules)
+ ✓ Compiled in 96ms (448 modules)
+ ✓ Compiled in 568ms (1029 modules)
+ ✓ Compiled in 566ms (1029 modules)
+ ✓ Compiled in 476ms (1025 modules)
+ ✓ Compiled in 390ms (1025 modules)
+ ✓ Compiled in 525ms (1039 modules)
+ ✓ Compiled in 228ms (1039 modules)
+ ✓ Compiled in 182ms (1039 modules)
+ ✓ Compiled in 143ms (1039 modules)
+ ✓ Compiled in 212ms (1039 modules)
+ ✓ Compiled in 207ms (1039 modules)
+ ✓ Compiled in 140ms (1039 modules)
+ ✓ Compiled in 254ms (1039 modules)
+ ✓ Compiled in 171ms (1039 modules)
+ ✓ Compiled in 156ms (1039 modules)
+ ✓ Compiled in 237ms (1039 modules)
+ ✓ Compiled in 185ms (1039 modules)
+ ✓ Compiled in 157ms (1039 modules)
+ ✓ Compiled in 186ms (1039 modules)
+ ✓ Compiled in 249ms (1039 modules)
+ ✓ Compiled in 150ms (1039 modules)
+ ✓ Compiled in 216ms (1039 modules)
+ ✓ Compiled in 137ms (1039 modules)
+ ✓ Compiled in 239ms (1039 modules)
+ ✓ Compiled in 215ms (1039 modules)
+ ✓ Compiled in 160ms (1039 modules)
+ ✓ Compiled in 134ms (1039 modules)
+ ✓ Compiled in 411ms (1039 modules)
+ GET /create-post 200 in 230ms
+ ○ Compiling /posts ...
+ ✓ Compiled /posts in 645ms (1047 modules)
+ GET /posts 200 in 222ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled /_not-found in 462ms (1037 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 552ms
+ GET /create-post 200 in 33ms
+ GET /site.webmanifest 404 in 20ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 981ms (1371 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/89d089b1d1f8bf6c.webpack.hot-update.json 404 in 426ms
+ GET /create-post 200 in 459ms
+ GET /create-post 200 in 10ms
+ GET /create-post 404 in 1314ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 549ms (1387 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 407ms
+ GET /favicon.ico 200 in 13ms

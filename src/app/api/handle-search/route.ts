@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { searchHandles, getBrandHandles } from '../../../lib/handle-database';
+import { searchHandles, getBrandHandles, suggestBrandsFromHandle } from '../../../lib/handle-database';
 
 /**
- * Internal handle search API endpoint
- * GET /api/handle-search?q=query&limit=10&brand=brandName
+ * Enhanced bidirectional handle search API endpoint
+ * GET /api/handle-search?q=query&limit=10&mode=search|suggest|brand
  */
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get('q');
     const limitParam = searchParams.get('limit');
+    const mode = searchParams.get('mode') || 'search';
     const brandName = searchParams.get('brand');
 
     // Validate query parameter
@@ -32,24 +33,46 @@ export async function GET(request: NextRequest) {
 
     let results;
 
-    if (brandName) {
-      // Get all handles for a specific brand
-      const brandHandles = await getBrandHandles(brandName);
-      results = {
-        query: brandName,
-        type: 'brand_handles',
-        results: brandHandles,
-        count: Object.keys(brandHandles).length
-      };
-    } else {
-      // General search
-      const searchResults = await searchHandles(query.trim(), limit);
-      results = {
-        query: query.trim(),
-        type: 'search_results',
-        results: searchResults,
-        count: searchResults.length
-      };
+    switch (mode) {
+      case 'brand':
+        // Get all handles for a specific brand
+        const brandHandles = await getBrandHandles(brandName || query.trim());
+        results = {
+          query: brandName || query.trim(),
+          type: 'brand_handles',
+          mode: 'brand',
+          results: brandHandles,
+          count: Object.keys(brandHandles).length
+        };
+        break;
+
+      case 'suggest':
+        // Bidirectional suggestion: from partial handle to brand suggestions
+        const suggestions = await suggestBrandsFromHandle(query.trim());
+        results = {
+          query: query.trim(),
+          type: 'brand_suggestions',
+          mode: 'suggest',
+          results: suggestions,
+          count: suggestions.length,
+          message: suggestions.length > 0 
+            ? `Found ${suggestions.length} brand suggestions for "${query.trim()}"` 
+            : `No brand suggestions found for "${query.trim()}"`
+        };
+        break;
+
+      case 'search':
+      default:
+        // Enhanced bidirectional search
+        const searchResults = await searchHandles(query.trim(), limit);
+        results = {
+          query: query.trim(),
+          type: 'search_results',
+          mode: 'search',
+          results: searchResults,
+          count: searchResults.length
+        };
+        break;
     }
 
     return NextResponse.json(results);

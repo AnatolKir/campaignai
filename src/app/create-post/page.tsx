@@ -26,6 +26,11 @@ import {
 } from '../../types/create-post';
 import { PlatformSpecificMentions } from '../../components/PlatformSpecificMentions';
 import { TimezoneSelector } from '../../components/TimezoneSelector';
+import RichTextEditor from '../../components/RichTextEditor';
+import PlatformPostPreview from '../../components/PlatformPostPreview';
+import ImageCropper, { CropData } from '../../components/ImageCropper';
+
+import { useAutoSave } from '../../hooks/useAutoSave';
 
 // Form validation schema
 const createPostSchema = z.object({
@@ -70,10 +75,47 @@ export default function CreatePostPage() {
     status: 'idle'
   });
   const [hashtagInput, setHashtagInput] = useState('');
+  const [lastAutoSave, setLastAutoSave] = useState<Date | null>(null);
+  const [editingPlatforms, setEditingPlatforms] = useState<Set<string>>(new Set());
+  
+  // Image cropping state
+  const [selectedImageForCrop, setSelectedImageForCrop] = useState<MediaFile | null>(null);
+  const [isCropperOpen, setIsCropperOpen] = useState(false);
 
   // Watch form values
   const watchedValues = watch();
   const { mainContent, selectedPlatforms, schedulingOption } = watchedValues;
+
+  // Auto-save functionality
+  const { loadData, clearSavedData } = useAutoSave(watchedValues, {
+    key: 'create-post-draft',
+    onSave: async (data) => {
+      // Could integrate with backend API here
+      setLastAutoSave(new Date());
+    }
+  });
+
+  // Load draft on component mount
+  useEffect(() => {
+    const savedDraft = loadData();
+    if (savedDraft && savedDraft.mainContent) {
+      const shouldLoad = window.confirm(
+        'Found a saved draft from your previous session. Would you like to load it?'
+      );
+      if (shouldLoad) {
+        // Safely restore form data
+        const draft = savedDraft as Partial<FormData>;
+        if (draft.mainContent !== undefined) setValue('mainContent', draft.mainContent);
+        if (draft.hashtags !== undefined) setValue('hashtags', draft.hashtags);
+        if (draft.mentions !== undefined) setValue('mentions', draft.mentions);
+        if (draft.selectedPlatforms !== undefined) setValue('selectedPlatforms', draft.selectedPlatforms);
+        if (draft.schedulingOption !== undefined) setValue('schedulingOption', draft.schedulingOption);
+        if (draft.scheduledDate !== undefined) setValue('scheduledDate', draft.scheduledDate);
+        if (draft.scheduledTime !== undefined) setValue('scheduledTime', draft.scheduledTime);
+        if (draft.timezone !== undefined) setValue('timezone', draft.timezone);
+      }
+    }
+  }, [loadData, setValue]);
 
   // File upload handler
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -113,6 +155,105 @@ export default function CreatePostPage() {
   };
 
   // Platform-specific mentions are handled by the PlatformSpecificMentions component
+
+  // Handle image cropping
+  const handleCropImage = (mediaFile: MediaFile) => {
+    if (mediaFile.type === 'image' && selectedPlatforms.length > 0) {
+      setSelectedImageForCrop(mediaFile);
+      setIsCropperOpen(true);
+    }
+  };
+
+  const handleCropComplete = async (platformId: string, cropData: CropData) => {
+    if (!selectedImageForCrop) return;
+
+    try {
+      // Update the media file with crop data
+      const updatedMediaFiles = mediaFiles.map(file => {
+        if (file.id === selectedImageForCrop.id) {
+          return {
+            ...file,
+            isProcessing: true,
+            cropData: {
+              ...file.cropData,
+              [platformId]: cropData
+            }
+          };
+        }
+        return file;
+      });
+      setMediaFiles(updatedMediaFiles);
+
+      // Process the image with the backend API
+      const imageBase64 = selectedImageForCrop.preview || '';
+      
+      const response = await fetch('/api/process-image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          imageBase64,
+          cropData,
+          quality: 'medium'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Update the media file with processed image data
+        const finalUpdatedMediaFiles = mediaFiles.map(file => {
+          if (file.id === selectedImageForCrop.id) {
+            const processedImages = file.processedImages || {
+              original: file.preview || '',
+              preview: file.preview || '',
+              cropped: {},
+              compressed: {}
+            };
+
+            return {
+              ...file,
+              isProcessing: false,
+              processedImages: {
+                ...processedImages,
+                cropped: {
+                  ...processedImages.cropped,
+                  [platformId]: result.data.processed
+                },
+                compressed: {
+                  ...processedImages.compressed,
+                  [platformId]: result.data.preview
+                }
+              }
+            };
+          }
+          return file;
+        });
+        setMediaFiles(finalUpdatedMediaFiles);
+      } else {
+        console.error('Image processing failed:', result.error);
+        // Reset processing state on error
+        const errorUpdatedMediaFiles = mediaFiles.map(file => {
+          if (file.id === selectedImageForCrop.id) {
+            return {
+              ...file,
+              isProcessing: false
+            };
+          }
+          return file;
+        });
+        setMediaFiles(errorUpdatedMediaFiles);
+      }
+    } catch (error) {
+      console.error('Error processing image:', error);
+    }
+  };
+
+  const handleCloseCropper = () => {
+    setIsCropperOpen(false);
+    setSelectedImageForCrop(null);
+  };
 
   // Generate AI previews for selected platforms
   const generatePreviews = async () => {
@@ -216,6 +357,9 @@ export default function CreatePostPage() {
         message: 'Post created successfully!',
         postId: Math.random().toString(36).substr(2, 9)
       });
+
+      // Clear the saved draft since post was successfully created
+      clearSavedData();
     } catch (error) {
       setPostCreationStatus({ 
         status: 'error', 
@@ -279,8 +423,6 @@ export default function CreatePostPage() {
                 <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
                   currentStep === step.key 
                     ? 'bg-purple-600 border-purple-600 text-white'
-                    : steps.indexOf(currentStep) > index
-                    ? 'bg-green-600 border-green-600 text-white'
                     : 'bg-white/10 border-white/20 text-gray-400'
                 }`}>
                   <span className="text-sm">{step.icon}</span>
@@ -293,9 +435,7 @@ export default function CreatePostPage() {
                   </p>
                 </div>
                 {index < 3 && (
-                  <div className={`flex-1 h-0.5 mx-4 ${
-                    steps.indexOf(currentStep) > index ? 'bg-green-600' : 'bg-white/20'
-                  }`} />
+                  <div className="flex-1 h-0.5 mx-4 bg-white/20" />
                 )}
               </div>
             ))}
@@ -308,7 +448,7 @@ export default function CreatePostPage() {
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
               <h2 className="text-xl font-semibold mb-6">Step 1: Content Input</h2>
               
-              {/* Main Content */}
+              {/* Rich Text Editor */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Main Post Content *
@@ -317,20 +457,33 @@ export default function CreatePostPage() {
                   name="mainContent"
                   control={control}
                   render={({ field }) => (
-                    <textarea
-                      {...field}
-                      placeholder="Write your post content here..."
-                      rows={8}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                                            <RichTextEditor
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder="Test: Type some text and try the B and I buttons!"
                     />
                   )}
                 />
                 {errors.mainContent && (
                   <p className="text-red-400 text-sm mt-1">{errors.mainContent.message}</p>
                 )}
-                <div className="text-right text-sm text-gray-400 mt-1">
-                  {mainContent?.length || 0} / 10,000 characters
-                </div>
+                
+                {/* Auto-save indicator */}
+                {lastAutoSave && (
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="text-xs text-green-400 flex items-center gap-1">
+                      <span>✅</span>
+                      <span>Last saved: {lastAutoSave.toLocaleTimeString()}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={clearSavedData}
+                      className="text-xs text-gray-400 hover:text-gray-300 underline"
+                    >
+                      Clear Draft
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Hashtags */}
@@ -430,7 +583,48 @@ export default function CreatePostPage() {
                           )}
                           <p className="text-xs text-gray-300 mt-2 truncate">{file.name}</p>
                           <p className="text-xs text-gray-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                          
+                          {/* Crop Button for Images */}
+                          {file.type === 'image' && selectedPlatforms.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={() => handleCropImage(file)}
+                              disabled={file.isProcessing}
+                              className="mt-2 w-full bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-2 rounded-lg hover:from-orange-700 hover:to-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium text-sm"
+                            >
+                              {file.isProcessing ? (
+                                <div className="flex items-center justify-center space-x-2">
+                                  <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
+                                  <span>Processing...</span>
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-center space-x-2">
+                                  <span>✂️</span>
+                                  <span>Crop for Platforms</span>
+                                </div>
+                              )}
+                            </button>
+                          )}
+                          {file.type === 'image' && selectedPlatforms.length === 0 && (
+                            <div className="mt-2 text-xs text-yellow-400 text-center">
+                              Select platforms in Step 2 to enable cropping
+                            </div>
+                          )}
+                          
+                          {/* Crop Status */}
+                          {file.cropData && Object.keys(file.cropData).length > 0 && (
+                            <div className="mt-2 text-xs text-green-400 text-center">
+                              ✅ Cropped for {Object.keys(file.cropData).length} platform(s)
+                            </div>
+                          )}
+                          {file.type === 'image' && selectedPlatforms.length > 0 && (!file.cropData || Object.keys(file.cropData).length === 0) && (
+                            <div className="mt-2 text-xs text-yellow-400 text-center">
+                              ⚠️ Not yet optimized for platforms
+                            </div>
+                          )}
                         </div>
+                        
+                        {/* Delete Button */}
                         <button
                           type="button"
                           onClick={() => {
@@ -543,6 +737,76 @@ export default function CreatePostPage() {
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
               <h2 className="text-xl font-semibold mb-6">Step 3: AI Formatting & Previews</h2>
               
+              {/* Image Cropping Section - Make this prominent */}
+              {mediaFiles.filter(file => file.type === 'image').length > 0 && (
+                <div className="mb-8 p-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-orange-300 mb-1">🖼️ Image Optimization</h3>
+                      <p className="text-sm text-orange-200">
+                        Crop your images for optimal display on each platform
+                      </p>
+                    </div>
+                    <div className="text-2xl">✂️</div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {mediaFiles.filter(file => file.type === 'image').map((file) => (
+                      <div key={file.id} className="bg-white/10 rounded-lg p-3 border border-white/20">
+                        {file.preview ? (
+                          <img
+                            src={file.preview}
+                            alt={file.name}
+                            className="w-full h-24 object-cover rounded mb-2"
+                          />
+                        ) : (
+                          <div className="w-full h-24 flex items-center justify-center bg-gray-600 rounded mb-2">
+                            <span className="text-xl">🖼️</span>
+                          </div>
+                        )}
+                        <p className="text-xs text-gray-300 mb-2 truncate">{file.name}</p>
+                        
+                        {/* Prominent Crop Button */}
+                        <button
+                          type="button"
+                          onClick={() => handleCropImage(file)}
+                          disabled={file.isProcessing}
+                          className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-2 rounded-lg hover:from-orange-700 hover:to-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium text-sm"
+                        >
+                          {file.isProcessing ? (
+                            <div className="flex items-center justify-center space-x-2">
+                              <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
+                              <span>Processing...</span>
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-center space-x-2">
+                              <span>✂️</span>
+                              <span>Crop for Platforms</span>
+                            </div>
+                          )}
+                        </button>
+                        
+                        {/* Crop Status */}
+                        {file.cropData && Object.keys(file.cropData).length > 0 && (
+                          <div className="mt-2 text-xs text-green-400 text-center">
+                            ✅ Cropped for {Object.keys(file.cropData).length} platform(s)
+                          </div>
+                        )}
+                        {(!file.cropData || Object.keys(file.cropData).length === 0) && (
+                          <div className="mt-2 text-xs text-yellow-400 text-center">
+                            ⚠️ Not yet optimized
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-4 text-xs text-orange-200">
+                    💡 <strong>Tip:</strong> Each platform has different image requirements. Cropping optimizes your images for better engagement!
+                  </div>
+                </div>
+              )}
+
               {/* AI Processing Status */}
               {aiFormattingStatus.status === 'processing' && (
                 <div className="mb-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg">
@@ -599,30 +863,116 @@ export default function CreatePostPage() {
                             <button
                               type="button"
                               onClick={() => {
+                                const isEditing = editingPlatforms.has(preview.platform);
+                                const newEditingPlatforms = new Set(editingPlatforms);
+                                if (isEditing) {
+                                  newEditingPlatforms.delete(preview.platform);
+                                } else {
+                                  newEditingPlatforms.add(preview.platform);
+                                }
+                                setEditingPlatforms(newEditingPlatforms);
+                              }}
+                              className="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 transition-colors"
+                            >
+                              {editingPlatforms.has(preview.platform) ? '👁️ Preview' : '✏️ Edit'}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
                                 // TODO: Reset to AI suggested content
                                 console.log('Reset to AI suggested for', preview.platform);
                               }}
-                              className="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 transition-colors"
+                              className="text-xs bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-700 transition-colors"
                             >
                               Reset to AI Suggested
                             </button>
                           </div>
                         </div>
                         
-                        {/* Editable Content */}
-                        <textarea
-                          value={preview.content}
-                          onChange={(e) => {
-                            const updatedPreviews = platformPreviews.map(p =>
-                              p.platform === preview.platform
-                                ? { ...p, content: e.target.value, isEdited: true, characterCount: e.target.value.length }
-                                : p
-                            );
-                            setPlatformPreviews(updatedPreviews);
-                          }}
-                          rows={6}
-                          className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none mb-3"
-                        />
+                        {/* Platform Post Preview or Edit Mode */}
+                        {editingPlatforms.has(preview.platform) ? (
+                          <>
+                            {/* Media Files Display with inline crop option */}
+                            {mediaFiles.length > 0 && (
+                              <div className="mb-4">
+                                <h4 className="text-sm font-medium text-gray-300 mb-2">📎 Attached Media</h4>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                  {mediaFiles.map((file) => (
+                                    <div key={file.id} className="bg-white/10 rounded-lg p-2 border border-white/20 relative group">
+                                      {file.type === 'image' && file.preview ? (
+                                        <img
+                                          src={file.preview}
+                                          alt={file.name}
+                                          className="w-full h-16 object-cover rounded"
+                                        />
+                                      ) : (
+                                        <div className="w-full h-16 flex items-center justify-center">
+                                          <span className="text-xl">
+                                            {file.type === 'video' ? '🎥' : '📄'}
+                                          </span>
+                                        </div>
+                                      )}
+                                      <p className="text-xs text-gray-300 mt-1 truncate">{file.name}</p>
+                                      
+                                      {/* Quick crop button overlay for images */}
+                                      {file.type === 'image' && (
+                                        <button
+                                          type="button"
+                                          onClick={() => handleCropImage(file)}
+                                          className="absolute top-1 right-1 bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-orange-700"
+                                          title="Crop for platforms"
+                                        >
+                                          ✂️
+                                        </button>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Editable Rich Text Content */}
+                            <RichTextEditor
+                              key={`${preview.platform}-editor`}
+                              value={preview.content}
+                              onChange={(newContent) => {
+                                const updatedPreviews = platformPreviews.map(p =>
+                                  p.platform === preview.platform
+                                    ? { ...p, content: newContent, isEdited: true, characterCount: newContent.length }
+                                    : p
+                                );
+                                setPlatformPreviews(updatedPreviews);
+                              }}
+                              placeholder={`Edit content for ${info.name}...`}
+                              maxLength={preview.characterLimit}
+                              config={{
+                                toolbar: {
+                                  bold: true,
+                                  italic: true,
+                                  underline: false, // Platform-specific formatting
+                                  strikethrough: preview.platform !== 'linkedin', // LinkedIn doesn't support strikethrough
+                                  link: true,
+                                  list: preview.platform !== 'twitter_x', // Twitter has limited list support
+                                  heading: preview.platform === 'linkedin' || preview.platform === 'reddit', // Only platforms that support headings
+                                },
+                                autoSave: false, // Don't auto-save platform previews
+                                spellCheck: true,
+                              }}
+                              className="mb-3"
+                            />
+                          </>
+                        ) : (
+                          /* Platform-Specific Post Preview */
+                          <div className="mb-3">
+                            <PlatformPostPreview
+                              platform={preview.platform}
+                              content={preview.content}
+                              mediaFiles={mediaFiles}
+                              hashtags={preview.hashtags}
+                              mentions={preview.mentions}
+                            />
+                          </div>
+                        )}
                         
                         {/* Warnings and Suggestions */}
                         {preview.warnings.length > 0 && (
@@ -898,6 +1248,17 @@ export default function CreatePostPage() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Image Cropper Modal */}
+        {selectedImageForCrop && (
+          <ImageCropper
+            image={selectedImageForCrop.preview || ''}
+            selectedPlatforms={selectedPlatforms}
+            onCropComplete={handleCropComplete}
+            onClose={handleCloseCropper}
+            isOpen={isCropperOpen}
+          />
         )}
       </div>
     </div>

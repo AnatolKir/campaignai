@@ -11,20 +11,22 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.50.0",
-    "react-hook-form": "^7.53.2",
-    "zod": "^3.23.8",
     "@hookform/resolvers": "^3.10.0",
     "@lexical/react": "^0.19.0",
-    "lexical": "^0.19.0",
     "@lexical/rich-text": "^0.19.0",
     "@lexical/selection": "^0.19.0",
     "@lexical/utils": "^0.19.0",
-    "react-dropzone": "^14.2.3",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.50.0",
+    "lexical": "^0.19.0",
     "next": "15.3.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-dropzone": "^14.2.3",
+    "react-easy-crop": "^5.4.2",
+    "react-hook-form": "^7.53.2",
+    "sharp": "^0.34.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

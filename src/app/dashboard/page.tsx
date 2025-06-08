@@ -42,19 +42,19 @@ export default function Dashboard() {
       <UnifiedNavigation />
 
       {/* Full Width Intelligence Dashboard */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6 md:p-8">
         <div className="max-w-[1600px] mx-auto">
           
           {/* Header with Controls */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 space-y-4 lg:space-y-0">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 sm:mb-8 space-y-4 lg:space-y-0">
             <div>
-              <h1 className="text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
                 Intelligence Dashboard
               </h1>
-              <p className="text-gray-300 text-xl">
+              <p className="text-gray-300 text-base sm:text-lg md:text-xl">
                 AI-powered insights for {currentBrand?.name || 'your brand'}
                 {currentBrand && (
-                  <span className="ml-3 px-4 py-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-full text-sm">
+                  <span className="ml-3 px-3 sm:px-4 py-1 sm:py-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-full text-xs sm:text-sm">
                     @{currentBrand.handle || currentBrand.name}
                   </span>
                 )}
@@ -99,33 +99,33 @@ export default function Dashboard() {
           </div>
 
           {/* AI Agent Status Banner */}
-          <div className="bg-gradient-to-r from-green-900/30 via-emerald-900/30 to-green-900/30 border border-green-500/30 rounded-2xl p-6 mb-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center">
-                  <span className="text-white text-2xl">🤖</span>
+          <div className="bg-gradient-to-r from-green-900/30 via-emerald-900/30 to-green-900/30 border border-green-500/30 rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between space-y-4 lg:space-y-0">
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center">
+                  <span className="text-white text-xl sm:text-2xl">🤖</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">AI Agent Status</h3>
-                  <p className="text-green-300">Currently learning and optimizing your campaigns</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">AI Agent Status</h3>
+                  <p className="text-green-300 text-sm sm:text-base">Currently learning and optimizing your campaigns</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center w-full lg:w-auto">
                 <div>
-                  <p className="text-green-400 text-2xl font-bold">🟢 Active</p>
-                  <p className="text-gray-300 text-sm">Status</p>
+                  <p className="text-green-400 text-lg sm:text-2xl font-bold">🟢 Active</p>
+                  <p className="text-gray-300 text-xs sm:text-sm">Status</p>
                 </div>
                 <div>
-                  <p className="text-white text-2xl font-bold">1,247</p>
-                  <p className="text-gray-300 text-sm">Actions Today</p>
+                  <p className="text-white text-lg sm:text-2xl font-bold">1,247</p>
+                  <p className="text-gray-300 text-xs sm:text-sm">Actions Today</p>
                 </div>
                 <div>
-                  <p className="text-green-400 text-2xl font-bold">94.8%</p>
-                  <p className="text-gray-300 text-sm">Success Rate</p>
+                  <p className="text-green-400 text-lg sm:text-2xl font-bold">94.8%</p>
+                  <p className="text-gray-300 text-xs sm:text-sm">Success Rate</p>
                 </div>
                 <div>
-                  <p className="text-blue-400 text-2xl font-bold">Learning</p>
-                  <p className="text-gray-300 text-sm">Audience Patterns</p>
+                  <p className="text-blue-400 text-lg sm:text-2xl font-bold">Learning</p>
+                  <p className="text-gray-300 text-xs sm:text-sm">Audience Patterns</p>
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function Dashboard() {
             <div className="space-y-8">
               
               {/* Key Performance Indicators - Expanded Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:border-purple-500/30 transition-all">
                   <div className="flex items-center justify-between mb-4">
                     <div>

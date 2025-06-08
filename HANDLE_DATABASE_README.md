@@ -26,18 +26,33 @@ When users add Target Accounts via the **Target Accounts** feature (paste list, 
 - **CSV support**: Name, Handle/URL columns
 - **Confidence scoring**: High/Medium/Low based on detection accuracy
 
-### ✅ **Smart Search & Suggestions**
-- Real-time search with 300ms debouncing
-- Fuzzy matching with PostgreSQL similarity functions
-- Verified handle prioritization
-- Usage count tracking (how many users submitted each handle)
-- Cross-platform handle discovery
+### ✅ **Bidirectional Smart Search** 🆕
+- **Handle-to-Brand**: Type `@elonm` → suggests "Elon Musk" with all platform handles
+- **Brand-to-Handle**: Search "Nike" → shows @nike across all platforms
+- **Smart Deduplication**: Prevents 150 Elon Musks with advanced similarity matching
+- **Real-time suggestions**: 300ms debounced search with keyboard navigation
+- **Cross-platform completion**: One search adds handles to all selected platforms
+
+### ✅ **Advanced Deduplication** 🆕
+- **Brand name normalization**: Removes Inc, Corp, Ltd variations automatically
+- **Similarity algorithms**: Levenshtein distance + Jaccard similarity + substring matching
+- **Canonical naming**: "elon musk", "Elon R Musk" → unified as "Elon Musk"
+- **Smart merging**: Automatically consolidates similar brand entries
+- **Confidence scoring**: High/Medium/Low based on multiple factors
+
+### ✅ **Enhanced Search Modes** 🆕
+- **Search mode**: General bidirectional search across brands and handles
+- **Suggest mode**: Handle-to-brand suggestions with cross-platform mapping
+- **Brand mode**: Get all handles for a specific brand across platforms
+- **Fuzzy matching**: Finds results even with typos or partial matches
+- **Verified prioritization**: Verified handles appear first in results
 
 ### ✅ **Data Quality & Privacy**
 - **Verification system**: Admin can mark popular handles as "verified"
-- **Duplicate handling**: Automatic detection and timestamp updates
+- **Duplicate prevention**: Advanced algorithms prevent data pollution
 - **Privacy-focused**: Internal use only, no data sharing
 - **User attribution**: Track who submitted each handle (for analytics)
+- **Usage tracking**: Monitor which handles are most frequently added
 
 ## Architecture
 
@@ -84,10 +99,23 @@ CREATE TABLE handle_database (
 - Custom mention creation
 - Cross-platform handle mapping
 
-#### 5. **Search API** (`/src/app/api/handle-search/route.ts`)
-- RESTful endpoint: `GET /api/handle-search?q=nike&limit=10`
+#### 5. **Enhanced Search API** (`/src/app/api/handle-search/route.ts`)
+- RESTful endpoint: `GET /api/handle-search?q=nike&limit=10&mode=search|suggest|brand`
+- **Bidirectional search modes**: search, suggest (handle→brand), brand (brand→handles)
 - Query validation and rate limiting
-- JSON response with metadata
+- JSON response with metadata and confidence scores
+
+#### 6. **Brand Matching System** (`/src/utils/brand-matcher.ts`) 🆕
+- Smart brand name normalization and deduplication
+- Similarity algorithms: Levenshtein, Jaccard, substring matching
+- Canonical brand name resolution
+- Duplicate detection with configurable thresholds
+
+#### 7. **Bidirectional Search Component** (`/src/components/BidirectionalHandleSearch.tsx`) 🆕
+- Enhanced UI with real-time bidirectional suggestions
+- Keyboard navigation (arrow keys, enter, escape)
+- Smart completion from partial handles to full brand names
+- Cross-platform handle auto-population
 
 ## User Workflow
 
@@ -145,30 +173,75 @@ Nike - @nike
 Apple - https://instagram.com/apple
 ```
 
-### API Response Example
+### Enhanced API Response Examples
 
+#### Bidirectional Search (mode=search)
 ```json
 {
   "query": "nike",
-  "type": "search_results", 
+  "type": "search_results",
+  "mode": "search",
   "count": 3,
   "results": [
     {
       "id": "uuid-123",
       "brand_or_person_name": "Nike",
-      "platform": "instagram",
+      "platform": "instagram", 
       "handle": "nike",
       "verified": true,
       "usage_count": 15,
       "platforms": ["instagram", "twitter_x", "linkedin", "tiktok"],
       "all_handles": {
         "instagram": "nike",
-        "twitter_x": "Nike", 
-        "linkedin": "nike",
+        "twitter_x": "Nike",
+        "linkedin": "nike", 
         "tiktok": "nike"
       }
     }
   ]
+}
+```
+
+#### Handle-to-Brand Suggestions (mode=suggest)
+```json
+{
+  "query": "@elonm",
+  "type": "brand_suggestions",
+  "mode": "suggest", 
+  "count": 2,
+  "message": "Found 2 brand suggestions for '@elonm'",
+  "results": [
+    {
+      "id": "uuid-456",
+      "brand_or_person_name": "Elon Musk",
+      "verified": true,
+      "usage_count": 42,
+      "platforms": ["twitter_x", "instagram", "linkedin"],
+      "all_handles": {
+        "twitter_x": "elonmusk",
+        "instagram": "elonmusk", 
+        "linkedin": "elon-musk"
+      },
+      "isComplete": true,
+      "confidence": "high"
+    }
+  ]
+}
+```
+
+#### Brand-to-Handles Query (mode=brand)
+```json
+{
+  "query": "Tesla",
+  "type": "brand_handles",
+  "mode": "brand",
+  "count": 4,
+  "results": {
+    "instagram": "teslamotors",
+    "twitter_x": "Tesla",
+    "linkedin": "tesla-motors",
+    "youtube": "tesla"
+  }
 }
 ```
 
@@ -194,18 +267,31 @@ Add Target Accounts to your navigation:
 <Link href="/target-accounts">Target Accounts</Link>
 ```
 
-### 4. **Use Enhanced Mentions**
-Replace existing mention component in Create Post:
+### 4. **Use Bidirectional Handle Search** 🆕
+Replace existing mention component with the new bidirectional search:
 ```jsx
-import EnhancedPlatformSpecificMentions from '../components/EnhancedPlatformSpecificMentions';
+import BidirectionalHandleSearch from '../components/BidirectionalHandleSearch';
 
 // In your Create Post form
-<EnhancedPlatformSpecificMentions
+<BidirectionalHandleSearch
   selectedPlatforms={selectedPlatforms}
   onMentionsChange={setMentions}
   initialMentions={mentions}
 />
 ```
+
+### 5. **Demo the System**
+Visit the demo page to test bidirectional functionality:
+```bash
+# Navigate to the demo page
+/demo-handle-search
+```
+
+Key features to test:
+- Type `@elonm` → should suggest "Elon Musk" with cross-platform handles
+- Search `Nike` → should show @nike across all platforms  
+- Keyboard navigation with ↑↓ arrows, Enter to select
+- Smart deduplication prevents duplicate brand entries
 
 ## Data Privacy & Ethics
 

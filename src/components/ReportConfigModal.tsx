@@ -603,42 +603,42 @@ export function ReportConfigModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1000000] flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-slate-900/95 to-purple-900/95 backdrop-blur-lg rounded-3xl border border-white/10 max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="flex justify-between items-center p-6 border-b border-white/10">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1000000] flex items-center justify-center p-4 sm:p-6 md:p-8">
+      <div className="bg-gradient-to-br from-slate-900/95 to-purple-900/95 backdrop-blur-lg rounded-3xl border border-white/10 w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-4xl max-h-[90vh] overflow-hidden">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 sm:p-6 md:p-8 border-b border-white/10 space-y-3 sm:space-y-0">
           <div>
-            <h2 className="text-2xl font-bold text-white">Create Report Configuration</h2>
-            <p className="text-gray-400">Set up automated competitive intelligence reports</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-white">Create Report Configuration</h2>
+            <p className="text-gray-400 text-sm sm:text-base">Set up automated competitive intelligence reports</p>
           </div>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6 md:p-8">
           <StepIndicator />
           
-          <div className="overflow-y-auto max-h-96">
+          <div className="overflow-y-auto max-h-64 sm:max-h-80 md:max-h-96">
             {renderCurrentStep()}
           </div>
         </div>
 
-        <div className="flex justify-between items-center p-6 border-t border-white/10">
-          <div className="text-gray-400 text-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 sm:p-6 md:p-8 border-t border-white/10 space-y-3 sm:space-y-0">
+          <div className="text-gray-400 text-xs sm:text-sm">
             {step === 2 && `${getSelectedDataOptionsCount()} data options selected`}
             {step === 4 && `${formData.delivery_methods.length} delivery methods selected`}
           </div>
           
-          <div className="flex space-x-4">
+          <div className="flex space-x-2 sm:space-x-4 w-full sm:w-auto">
             {step > 1 && (
               <button
                 onClick={() => setStep(step - 1)}
-                className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold transition-colors"
+                className="flex-1 sm:flex-none px-4 sm:px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold transition-colors text-sm sm:text-base"
               >
                 Previous
               </button>
@@ -648,7 +648,7 @@ export function ReportConfigModal({
               <button
                 onClick={() => setStep(step + 1)}
                 disabled={step === 1 && (!formData.name.trim() || (formData.competitor_ids.length === 0 && formData.category_ids.length === 0))}
-                className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 sm:flex-none px-4 sm:px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 Next
               </button>
@@ -656,7 +656,7 @@ export function ReportConfigModal({
               <button
                 onClick={handleSave}
                 disabled={!isFormValid()}
-                className="px-6 py-2 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 sm:flex-none px-4 sm:px-6 py-2 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 Create Report
               </button>
