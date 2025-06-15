@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 
 export default function Error({
   error,
@@ -36,12 +37,12 @@ export default function Error({
             Try Again
           </button>
           
-          <a
+          <Link
             href="/en"
             className="bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-8 py-4 rounded-lg font-semibold transition-all text-center"
           >
             Go to Home
-          </a>
+          </Link>
         </div>
         
         {/* Error Details (for development) */}

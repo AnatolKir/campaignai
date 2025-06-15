@@ -108,7 +108,7 @@ export default function PostsPage() {
   useEffect(() => {
     // In real app, fetch posts from API
     setPosts(mockPosts);
-  }, []);
+  }, [mockPosts]);
 
   const filteredPosts = posts.filter(post => {
     // Apply tab filter

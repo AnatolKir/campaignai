@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useBrand } from '../contexts/BrandContext';
+import Link from 'next/link';
 
 export function BrandSwitcher() {
   const { currentBrand, availableBrands, isLoading, switchBrand, canCreateBrand } = useBrand();
@@ -131,7 +132,7 @@ export function BrandSwitcher() {
 
         {/* Management Actions */}
         <div className="border-t border-white/10 mt-3 pt-3 space-y-1">
-          <a
+          <Link
             href="/brand-settings"
             className="w-full flex items-center space-x-3 px-3 py-3 hover:bg-white/5 rounded-lg transition-colors text-left"
           >
@@ -145,7 +146,7 @@ export function BrandSwitcher() {
               <div className="text-white font-medium text-sm">Manage Brands</div>
               <div className="text-gray-400 text-xs">View all brands and settings</div>
             </div>
-          </a>
+          </Link>
           
           <button
             onClick={handleCreateBrand}
