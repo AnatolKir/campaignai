@@ -59,18 +59,15 @@ export const ConsolidatedEngagementBehavior: React.FC<ConsolidatedEngagementBeha
             options={[
               { 
                 value: "observer", 
-                label: t('engagement_behavior.observer'), 
-                description: t('engagement_behavior.observer_description')
+                label: t('engagement_behavior.observer')
               },
               { 
                 value: "participant", 
-                label: t('engagement_behavior.participant'), 
-                description: t('engagement_behavior.participant_description')
+                label: t('engagement_behavior.participant')
               },
               { 
                 value: "leader", 
-                label: t('engagement_behavior.leader'), 
-                description: t('engagement_behavior.leader_description')
+                label: t('engagement_behavior.leader')
               }
             ]}
             onChange={(value) => onChange('engagementStyle', value)}
