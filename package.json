@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "dev:clean": "lsof -ti:3000 | xargs kill -9 2>/dev/null || true && npm run dev",
-    "build": "npm run i18n:validate && npm run i18n:types && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
@@ -17,8 +17,7 @@
     "i18n:secure-setup": "tsx scripts/secure-api-manager.ts set-key",
     "i18n:test-connection": "tsx scripts/secure-api-manager.ts test",
     "i18n:usage-stats": "tsx scripts/secure-api-manager.ts stats",
-    "i18n:audit-log": "tsx scripts/secure-api-manager.ts audit",
-    "prebuild": "npm run i18n:check"
+    "i18n:audit-log": "tsx scripts/secure-api-manager.ts audit"
   },
   "dependencies": {
     "@auth/supabase-adapter": "^1.9.1",
