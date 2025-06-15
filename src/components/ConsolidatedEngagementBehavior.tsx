@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import { ValidatedRadioGroup, ValidatedCheckbox } from './ValidatedFormField';
+import { ValidatedRadioGroup, ValidatedCheckbox, ValidatedSelect } from './ValidatedFormField';
 import { SettingsConflict, SettingsWarning } from '../hooks/useSettingsValidation';
+import { useTranslations } from 'next-intl';
 
 interface ConsolidatedEngagementBehaviorProps {
   // Consolidated engagement style (replaces proactiveness + conversationStarters + followUpBehavior)
@@ -40,6 +41,8 @@ export const ConsolidatedEngagementBehavior: React.FC<ConsolidatedEngagementBeha
   isFieldDisabled,
   getConflictingFields
 }) => {
+  const t = useTranslations();
+
   return (
     <div className="space-y-6">
       <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
@@ -48,26 +51,26 @@ export const ConsolidatedEngagementBehavior: React.FC<ConsolidatedEngagementBeha
         
         <div className="space-y-8">
           {/* Engagement Style - Replaces proactiveness + conversationStarters + followUpBehavior */}
-          <ValidatedRadioGroup
+          <ValidatedSelect
             label="Engagement Style"
             fieldName="engagementStyle"
-            description="How actively should your agent initiate and maintain conversations? This combines proactiveness, conversation starters, and follow-up behavior."
+            description="How proactively your AI agent engages with your audience and initiates conversations"
             value={engagementStyle}
             options={[
               { 
                 value: "observer", 
-                label: "🔍 Observer", 
-                description: "Reactive approach: Responds when directly engaged, rarely initiates conversations, minimal follow-up. Best for brands that prefer to respond rather than lead discussions." 
+                label: t('engagement_behavior.observer'), 
+                description: t('engagement_behavior.observer_description')
               },
               { 
                 value: "participant", 
-                label: "🤝 Participant", 
-                description: "Balanced approach: Mix of responding and initiating, occasional conversation starters, moderate follow-up. Good for most brands wanting steady engagement." 
+                label: t('engagement_behavior.participant'), 
+                description: t('engagement_behavior.participant_description')
               },
               { 
                 value: "leader", 
-                label: "🚀 Community Leader", 
-                description: "Proactive approach: Actively starts conversations, frequent discussion prompts, strong follow-up. Perfect for thought leadership and community building." 
+                label: t('engagement_behavior.leader'), 
+                description: t('engagement_behavior.leader_description')
               }
             ]}
             onChange={(value) => onChange('engagementStyle', value)}

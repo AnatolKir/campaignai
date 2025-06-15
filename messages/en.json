@@ -1,0 +1,34 @@
+{
+  "dashboard": {
+    "views": {
+      "intelligence_overview": "Intelligence Overview",
+      "performance_deep_dive": "Performance Deep Dive", 
+      "audience_intelligence": "Audience Intelligence",
+      "content_intelligence": "Content Intelligence",
+      "competitive_intelligence": "Competitive Intelligence",
+      "ai_predictions": "AI Predictions"
+    }
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "posts": "Posts",
+    "analytics": "Analytics",
+    "engagement": "Engagement",
+    "accounts": "Accounts",
+    "competitive_intelligence": "Competitive Intelligence",
+    "training": "Training",
+    "agent_settings": "Agent Settings",
+    "monetize": "Monetize"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update"
+  }
+} 

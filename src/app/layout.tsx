@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { BrandProvider } from "../contexts/BrandContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -123,59 +122,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "Campaign.ai",
-              "description": "AI-powered social media management platform that automates content creation, engagement, DM management, and competitor analysis across all social platforms.",
-              "url": "https://campaign.ai",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD",
-                "description": "Free trial available"
-              },
-              "author": {
-                "@type": "Organization",
-                "name": "Campaign.ai"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "1200"
-              },
-              "featureList": [
-                "AI Content Creation",
-                "Smart Engagement",
-                "DM Automation", 
-                "Competitor Analysis",
-                "Multi-platform Support",
-                "24/7 AI Agent Activity",
-                "Advanced Analytics",
-                "Brand Voice Training"
-              ]
-            }),
-          }}
-        />
-      </head>
-      <body
-        className={`${inter.variable} antialiased`}
-      >
-        <BrandProvider>
-          {children}
-        </BrandProvider>
-      </body>
-    </html>
-  );
+}) {
+  return children;
 }

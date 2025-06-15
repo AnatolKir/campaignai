@@ -14,6 +14,7 @@ import {
   TargetAccountInput 
 } from '../types/handle-database';
 import { Platform, PLATFORM_LABELS } from '../utils/ai_platform_formatter';
+import { useTranslations } from 'next-intl';
 
 interface TargetAccountsProps {
   userId: string;
@@ -21,6 +22,7 @@ interface TargetAccountsProps {
 }
 
 export default function TargetAccounts({ userId, onImportComplete }: TargetAccountsProps) {
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState<'paste' | 'csv' | 'txt'>('paste');
   const [pasteInput, setPasteInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -113,19 +115,18 @@ export default function TargetAccounts({ userId, onImportComplete }: TargetAccou
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-sm border">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Target Accounts</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('targetAccounts:title')}</h2>
         <p className="text-gray-600">
-          Add your target accounts to build Campaign.ai's internal handle database. 
-          Supports Instagram, Twitter/X, LinkedIn, TikTok, YouTube, Reddit, Discord, Telegram, WhatsApp Business, and Threads.
+          {t('targetAccounts:description')}
         </p>
       </div>
 
       {/* Tab Navigation */}
       <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
         {[
-          { key: 'paste', label: 'Paste List', icon: '📝' },
-          { key: 'csv', label: 'Upload CSV', icon: '📊' },
-          { key: 'txt', label: 'Upload TXT', icon: '📄' }
+          { key: 'paste', label: t('targetAccounts:pasteList'), icon: '📝' },
+          { key: 'csv', label: t('targetAccounts:uploadCSV'), icon: '📊' },
+          { key: 'txt', label: t('targetAccounts:uploadTXT'), icon: '📄' }
         ].map((tab) => (
           <button
             key={tab.key}
@@ -147,18 +148,13 @@ export default function TargetAccounts({ userId, onImportComplete }: TargetAccou
         <div className="space-y-4">
           <div>
             <label htmlFor="paste-input" className="block text-sm font-medium text-gray-700 mb-2">
-              Paste account handles or URLs (one per line)
+              {t('targetAccounts:pasteInstructions')}
             </label>
             <textarea
               id="paste-input"
               value={pasteInput}
               onChange={(e) => setPasteInput(e.target.value)}
-              placeholder={`Nike - @nike
-Apple, https://instagram.com/apple
-Tesla | https://twitter.com/tesla
-linkedin.com/company/microsoft
-@spotify
-tiktok.com/@netflix`}
+              placeholder={t('targetAccounts:pastePlaceholder')}
               className="w-full h-48 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono text-sm"
             />
           </div>
@@ -167,7 +163,7 @@ tiktok.com/@netflix`}
             disabled={!pasteInput.trim()}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Preview Handles
+            {t('targetAccounts:previewHandles')}
           </button>
         </div>
       )}
@@ -188,16 +184,16 @@ tiktok.com/@netflix`}
               {activeTab === 'csv' ? '📊' : '📄'}
             </div>
             <p className="text-lg font-medium text-gray-900">
-              {isDragActive ? 'Drop your file here' : `Upload ${activeTab.toUpperCase()} file`}
+              {isDragActive ? t('targetAccounts:dropFile') : t(`targetAccounts:upload${activeTab.toUpperCase()}File`)}
             </p>
             <p className="text-sm text-gray-500">
               {activeTab === 'csv' 
-                ? 'CSV format: Name, Handle/URL or Platform, Handle, Name'
-                : 'TXT format: One handle/URL per line, optionally with brand names'
+                ? t('targetAccounts:csvFormat')
+                : t('targetAccounts:txtFormat')
               }
             </p>
             <p className="text-xs text-gray-400">
-              Click to browse or drag and drop your file here
+              {t('targetAccounts:clickToBrowse')}
             </p>
           </div>
         </div>

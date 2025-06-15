@@ -27,6 +27,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# translation security files
+.translation-config.json
+.translation-audit.json
+
 # vercel
 .vercel
 

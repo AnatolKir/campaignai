@@ -1,0 +1,95 @@
+import NextAuth from 'next-auth'
+import { Resend } from 'resend'
+import { SupabaseAdapter } from '@auth/supabase-adapter'
+
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: SupabaseAdapter({
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  }),
+  
+  providers: [
+    {
+      id: "resend",
+      name: "Email",
+      type: "email" as const,
+      maxAge: 60 * 60 * 24, // Email link will expire in 24 hours
+      async sendVerificationRequest({
+        identifier: email,
+        url,
+        provider,
+      }: {
+        identifier: string;
+        url: string;
+        provider: any;
+      }) {
+        const { host } = new URL(url)
+        
+        try {
+          await resend.emails.send({
+            from: process.env.EMAIL_FROM || 'noreply@campaign.ai',
+            to: email,
+            subject: `Sign in to ${host}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <h1 style="color: #333; text-align: center;">Sign in to Campaign.ai</h1>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px; text-align: center;">
+                  <h2 style="color: white; margin-bottom: 20px;">Welcome back!</h2>
+                  <p style="color: white; margin-bottom: 30px;">Click the button below to sign in to your account.</p>
+                  <a href="${url}" style="display: inline-block; background: white; color: #667eea; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">Sign In</a>
+                </div>
+                <p style="color: #666; text-align: center; margin-top: 20px; font-size: 14px;">
+                  If you didn't request this email, you can safely ignore it.
+                </p>
+              </div>
+            `,
+          })
+        } catch (error) {
+          console.error('Failed to send verification email:', error)
+          throw new Error('Failed to send verification email')
+        }
+      },
+    },
+  ],
+  
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+    error: '/auth/error',
+    verifyRequest: '/auth/verify-request',
+  },
+  
+  callbacks: {
+    async session({ session, user }) {
+      // Add user info to session
+      if (session.user && user) {
+        session.user.id = user.id
+        session.user.role = (user as any).role || 'regular'
+        session.user.subscription_plan = (user as any).subscription_plan || 'free'
+        session.user.subscription_status = (user as any).subscription_status || 'inactive'
+        
+        // Check if user is super user
+        if (user.email === 'rick@campaign.ai') {
+          session.user.role = 'admin' as any
+          session.user.subscription_plan = 'pro' as any
+          session.user.subscription_status = 'active'
+        }
+      }
+      return session
+    },
+    
+    async signIn({ user, account, profile }) {
+      // Allow all sign-ins for now
+      return true
+    },
+  },
+  
+  session: {
+    strategy: 'database',
+  },
+  
+  debug: process.env.NODE_ENV === 'development',
+}) 

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "41923914-2bfd-4ac9-baf6-f88b11c75200",
+    "status": "running",
+    "progress": 2,
+    "totalFiles": 12,
+    "completedFiles": 0,
+    "totalKeys": 424,
+    "processedKeys": 102,
+    "startedAt": "2025-06-14T06:52:31.451Z",
+    "errors": [],
+    "rateLimitHits": 0,
+    "apiCallsCount": 0,
+    "currentLanguage": "Spanish",
+    "currentFile": "es.json",
+    "currentKey": "posts.reject_all"
+  },
+  {
+    "id": "5d8b492e-316e-4381-8c50-2101684f5c26",
+    "status": "running",
+    "progress": 6,
+    "totalFiles": 12,
+    "completedFiles": 0,
+    "totalKeys": 424,
+    "processedKeys": 295,
+    "startedAt": "2025-06-14T06:34:46.257Z",
+    "errors": [],
+    "rateLimitHits": 0,
+    "apiCallsCount": 0,
+    "currentLanguage": "Spanish",
+    "currentFile": "es.json"
+  },
+  {
+    "id": "a1351d26-fcef-49ac-a4f4-60aa7e168562",
+    "status": "completed",
+    "progress": 100,
+    "totalFiles": 12,
+    "completedFiles": 12,
+    "startedAt": "2025-06-14T05:41:09.209Z",
+    "completedAt": "2025-06-14T06:30:00.000Z"
+  }
+]

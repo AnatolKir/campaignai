@@ -3,6 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { BrandSwitcher } from './BrandSwitcher';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslations } from 'next-intl';
 
 interface AppNavigationProps {
   onMobileMenuToggle?: () => void;
@@ -10,6 +12,7 @@ interface AppNavigationProps {
 }
 
 export function AppNavigation({ onMobileMenuToggle, showMobileMenuButton = false }: AppNavigationProps) {
+  const t = useTranslations();
   return (
     <nav className="bg-black/20 backdrop-blur-lg border-b border-white/10 px-4 sm:px-6 py-4">
       <div className="flex justify-between items-center">
@@ -31,52 +34,55 @@ export function AppNavigation({ onMobileMenuToggle, showMobileMenuButton = false
             <div className="w-8 h-8 flex items-center justify-center">
               <img src="/logo-32.png" alt="Campaign.ai" className="w-8 h-8" />
             </div>
-            <span className="text-white font-bold text-xl">Campaign.ai</span>
+            <span className="text-white font-bold text-xl">{t('appNavigation:campaignAi')}</span>
           </div>
 
           {/* Brand Switcher */}
           <div className="hidden md:block">
             <BrandSwitcher />
           </div>
+
+          {/* Language Switcher */}
+          <LanguageSwitcher />
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden xl:flex items-center space-x-4">
           <Link href="/dashboard" className="text-white hover:text-purple-300 transition-colors">
-            Dashboard
+            {t('appNavigation:dashboard')}
           </Link>
           <Link href="/accounts" className="text-gray-300 hover:text-white transition-colors">
-            Accounts
+            {t('appNavigation:accounts')}
           </Link>
           <Link href="/posts" className="text-gray-300 hover:text-white transition-colors">
-            Posts
+            {t('appNavigation:posts')}
           </Link>
           <Link href="/engagement" className="text-gray-300 hover:text-white transition-colors">
-            Engagement
+            {t('appNavigation:engagement')}
           </Link>
           <Link href="/analytics" className="text-gray-300 hover:text-white transition-colors">
-            Analytics
+            {t('appNavigation:analytics')}
           </Link>
           <Link href="/competitive-intelligence" className="text-gray-300 hover:text-white transition-colors">
-            Competitive Intel
+            {t('appNavigation:competitiveIntel')}
           </Link>
           <Link href="/monetize" className="text-gray-300 hover:text-white transition-colors">
-            Monetize
+            {t('appNavigation:monetize')}
           </Link>
           <Link href="/advertise" className="text-gray-300 hover:text-white transition-colors">
-            Advertise
+            {t('appNavigation:advertise')}
           </Link>
           <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
-            Training
+            {t('appNavigation:training')}
           </Link>
           <Link href="/brand-settings" className="text-gray-300 hover:text-white transition-colors">
-            Brands
+            {t('appNavigation:brands')}
           </Link>
           <Link href="/upgrade" className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all text-white">
-            Upgrade to Pro
+            {t('appNavigation:upgradeToPro')}
           </Link>
           <button className="text-gray-300 hover:text-white transition-colors">
-            Sign In
+            {t('appNavigation:signIn')}
           </button>
         </div>
 

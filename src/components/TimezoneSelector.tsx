@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { TimezoneOption } from '../types/create-post';
 import { TIMEZONE_REGIONS, POPULAR_TIMEZONES, getCurrentOffset, getTimezoneInfo } from '../utils/timezones';
 
@@ -11,6 +12,7 @@ interface TimezoneSelectorProps {
 }
 
 export function TimezoneSelector({ value, onChange, className = '' }: TimezoneSelectorProps) {
+  const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredTimezones, setFilteredTimezones] = useState(TIMEZONE_REGIONS);
@@ -91,7 +93,7 @@ export function TimezoneSelector({ value, onChange, className = '' }: TimezoneSe
           <span className="text-lg">🌍</span>
           <div className="text-left">
             <div className="font-medium">
-              {selectedTimezone?.label || 'Select Timezone'}
+              {selectedTimezone?.label || t('dropdowns.select_timezone')}
             </div>
             {selectedTimezone && (
               <div className="text-sm text-gray-300">
@@ -117,96 +119,49 @@ export function TimezoneSelector({ value, onChange, className = '' }: TimezoneSe
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-gray-800 border border-gray-600 rounded-lg mt-1 max-h-96 overflow-hidden z-20 shadow-xl">
+        <div className="absolute z-50 w-full mt-2 bg-gray-800 border border-white/20 rounded-lg shadow-2xl max-h-96 overflow-hidden">
           {/* Search Input */}
-          <div className="p-3 border-b border-gray-700">
+          <div className="p-3 border-b border-white/10">
             <input
               ref={searchRef}
               type="text"
+              placeholder={t('dropdowns.search_timezones')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search timezones..."
-              className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-purple-500"
+              className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
+          {/* Timezone List */}
           <div className="overflow-y-auto max-h-80">
-            {/* Popular Timezones (only show when no search) */}
-            {!searchTerm.trim() && (
-              <div className="p-3 border-b border-gray-700">
-                <h4 className="text-sm font-medium text-gray-300 mb-2">Popular Timezones</h4>
-                <div className="space-y-1">
-                  {POPULAR_TIMEZONES.map((timezone) => (
-                    <button
-                      key={timezone.value}
-                      onClick={() => handleSelect(timezone)}
-                      className={`w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition-colors ${
-                        value === timezone.value ? 'bg-purple-600' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="text-white font-medium">{timezone.label}</div>
-                          <div className="text-sm text-gray-400">
-                            {timezone.city}, {timezone.country}
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm text-gray-300">{getCurrentOffset(timezone.value)}</div>
-                          <div className="text-xs text-gray-400">{getCurrentTime(timezone.value)}</div>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Regional Timezones */}
             {filteredTimezones.map((region) => (
-              <div key={region.name} className="p-3 border-b border-gray-700 last:border-b-0">
-                <h4 className="text-sm font-medium text-gray-300 mb-2 flex items-center space-x-2">
-                  <span>{getRegionIcon(region.name)}</span>
-                  <span>{region.name}</span>
-                  <span className="text-xs text-gray-500">({region.timezones.length})</span>
-                </h4>
-                
-                <div className="space-y-1">
-                  {region.timezones.map((timezone) => (
-                    <button
-                      key={timezone.value}
-                      onClick={() => handleSelect(timezone)}
-                      className={`w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition-colors ${
-                        value === timezone.value ? 'bg-purple-600' : ''
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="text-white font-medium">{timezone.label}</div>
-                          <div className="text-sm text-gray-400">
-                            {timezone.city}, {timezone.country}
-                            {timezone.isDST && (
-                              <span className="ml-2 text-xs bg-blue-500/20 text-blue-300 px-1 rounded">DST</span>
-                            )}
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm text-gray-300">{getCurrentOffset(timezone.value)}</div>
-                          <div className="text-xs text-gray-400">{getCurrentTime(timezone.value)}</div>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
+              <div key={region.name}>
+                <div className="px-3 py-2 text-xs font-semibold text-gray-400 bg-gray-700/50 sticky top-0">
+                  {region.name}
                 </div>
+                {region.timezones.map((timezone) => (
+                  <button
+                    key={timezone.value}
+                    onClick={() => handleSelect(timezone)}
+                    className="w-full px-3 py-2 text-left hover:bg-white/10 transition-colors flex items-center justify-between group"
+                  >
+                    <div className="flex-1">
+                      <div className="text-white font-medium">{timezone.label}</div>
+                      <div className="text-sm text-gray-400">
+                        {timezone.city}, {timezone.country}
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-400 group-hover:text-white">
+                      {getCurrentTime(timezone.value)}
+                    </div>
+                  </button>
+                ))}
               </div>
             ))}
-
-            {/* No Results */}
-            {filteredTimezones.length === 0 && searchTerm.trim() && (
-              <div className="p-6 text-center text-gray-400">
-                <div className="text-4xl mb-2">🔍</div>
-                <p>No timezones found matching "{searchTerm}"</p>
-                <p className="text-sm mt-1">Try searching by city, country, or timezone name</p>
+            
+            {filteredTimezones.length === 0 && (
+              <div className="px-3 py-8 text-center text-gray-400">
+                {t('messages.no_results_found')}
               </div>
             )}
           </div>
