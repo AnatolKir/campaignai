@@ -189,7 +189,7 @@ async function performTranslationSimple(
   const result: any = {};
   let processedCount = 0;
   let totalCount = 0;
-  let errors: string[] = [];
+  const errors: string[] = [];
   let apiCallsCount = 0;
   let rateLimitHits = 0;
 
