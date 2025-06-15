@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '../lib/supabase';
 import type { Brand, BrandWithPermissions, User } from '../types/supabase';
@@ -109,7 +109,7 @@ export function BrandProvider({ children }: BrandProviderProps) {
     },
   ];
 
-  const fetchUserAndBrands = async () => {
+  const fetchUserAndBrands = useCallback(async () => {
     setIsLoading(true);
     try {
       // TODO: Replace with actual Supabase queries
@@ -137,7 +137,7 @@ export function BrandProvider({ children }: BrandProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [mockUser, mockBrands, supabase]);
 
   const switchBrand = async (brandId: string) => {
     const brand = availableBrands.find(b => b.id === brandId);
@@ -232,7 +232,7 @@ export function BrandProvider({ children }: BrandProviderProps) {
 
   useEffect(() => {
     fetchUserAndBrands();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const value = {
     currentBrand,
