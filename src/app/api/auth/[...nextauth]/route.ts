@@ -3,7 +3,7 @@
 
 // export const { GET, POST } = handlers 
 
-// Temporary placeholder to prevent 404
+// NextAuth temporarily disabled for deployment
 export async function GET() {
   return new Response('NextAuth temporarily disabled', { status: 503 });
 }
