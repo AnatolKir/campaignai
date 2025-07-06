@@ -197,7 +197,7 @@ async function autoTranslateMissingKeys(apiKey: string, model = 'gpt-3.5-turbo')
     const targetTranslations = loadTranslationFile(locale, namespace);
     
     // Prepare translation requests
-    const requests: TranslationRequest[] = missingKeys.map(key => {
+    const requests: TranslationRequest[] = missingKeys.map((key: string) => {
       const sourceText = getNestedValue(enTranslations, key) || key;
       return {
         text: sourceText,
