@@ -2,5 +2,29 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://soon.campaign.ai/$1",
+      "permanent": false,
+      "has": [
+        {
+          "type": "host",
+          "value": "campaign.ai"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://soon.campaign.ai/$1",
+      "permanent": false,
+      "has": [
+        {
+          "type": "host",
+          "value": "www.campaign.ai"
+        }
+      ]
+    }
+  ]
 } 
