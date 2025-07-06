@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "/Users/ricklatona/Desktop/campaignainew/logs/http-audit.json",
+    "files": [
+        {
+            "date": 1751616951879,
+            "name": "/Users/ricklatona/Desktop/campaignainew/logs/http-2025-07-04.log",
+            "hash": "441b026a18a173ffd9e08e96362426cb004ab62f222ba7a2954e5f821510681c"
+        }
+    ],
+    "hashType": "sha256"
+}

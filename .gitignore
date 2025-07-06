@@ -38,6 +38,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# sensitive files
+.env.local.backup
+data/api-keys.json
+
 # IDE
 .idea/
 .vscode/
