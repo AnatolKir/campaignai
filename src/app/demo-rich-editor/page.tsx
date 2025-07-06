@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import RichTextEditor from '../../components/RichTextEditor';
+import Link from 'next/link';
 
 export default function RichTextEditorDemo() {
   const [content, setContent] = useState(`# Welcome to the Rich Text Editor! 
@@ -219,18 +220,18 @@ Start typing below to test the editor...`);
           </p>
           
           <div className="flex gap-4">
-            <a 
+            <Link 
               href="/create-post"
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-medium"
             >
               Create New Post
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/demo-handle-search"
               className="bg-white/10 text-white px-6 py-3 rounded-lg hover:bg-white/20 transition-colors border border-white/20"
             >
               Try Handle Search
-            </a>
+            </Link>
           </div>
         </div>
       </div>
