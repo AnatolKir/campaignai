@@ -34265,3 +34265,2758 @@ Import trace for requested module:
 
  ✓ Starting...
  ✓ Ready in 1213ms
+   Reload env: .env.local
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1282ms
+ ✓ Compiled /middleware in 146ms (182 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 1208ms (1145 modules)
+ ✓ Compiled in 227ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at UnifiedNavigation (src/components/UnifiedNavigation.tsx:24:27)
+  22 |   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  23 |   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
+> 24 |   const t = useTranslations();
+     |                           ^
+  25 |
+  26 |   // Helper function to create locale-aware URLs
+  27 |   const createLocalizedUrl = (path: string) => { {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /en 200 in 1768ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1318ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1438ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1272ms
+ ✓ Compiled /middleware in 143ms (182 modules)
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1272ms
+ ✓ Compiled /middleware in 142ms (182 modules)
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1251ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1267ms
+ ✓ Compiled /middleware in 149ms (182 modules)
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1366ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1329ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1662ms
+ ✓ Compiled /middleware in 188ms (182 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 1454ms (1145 modules)
+ ✓ Compiled in 461ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at UnifiedNavigation (src/components/UnifiedNavigation.tsx:24:27)
+  22 |   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  23 |   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
+> 24 |   const t = useTranslations();
+     |                           ^
+  25 |
+  26 |   // Helper function to create locale-aware URLs
+  27 |   const createLocalizedUrl = (path: string) => { {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /en 200 in 2305ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 51ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 59ms
+ ✓ Compiled in 364ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 22ms
+ ✓ Compiled in 193ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 19ms
+ ✓ Compiled in 159ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 160ms
+ ✓ Compiled in 278ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 25ms
+ ✓ Compiled in 374ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 18ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 81ms
+ ✓ Compiled in 336ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 77ms
+ ✓ Compiled in 429ms (440 modules)
+ ✓ Compiled in 293ms (440 modules)
+ ✓ Compiled in 334ms (440 modules)
+ ✓ Compiled in 236ms (440 modules)
+ ✓ Compiled in 237ms (440 modules)
+ ✓ Compiled in 195ms (440 modules)
+ ✓ Compiled in 252ms (440 modules)
+ ✓ Compiled in 404ms (440 modules)
+ ✓ Compiled in 230ms (440 modules)
+ ✓ Compiled in 197ms (440 modules)
+ ✓ Compiled in 218ms (440 modules)
+ ✓ Compiled in 284ms (440 modules)
+ ✓ Compiled in 189ms (440 modules)
+ ✓ Compiled in 183ms (440 modules)
+ ✓ Compiled in 178ms (440 modules)
+ ✓ Compiled in 189ms (440 modules)
+ ✓ Compiled in 216ms (440 modules)
+ ✓ Compiled in 275ms (440 modules)
+ ✓ Compiled in 126ms (440 modules)
+ ✓ Compiled in 404ms (440 modules)
+ ✓ Compiled in 440ms (440 modules)
+ ✓ Compiled in 875ms (440 modules)
+ ✓ Compiled in 196ms (440 modules)
+ ✓ Compiled in 251ms (440 modules)
+ ✓ Compiled in 219ms (440 modules)
+ ✓ Compiled in 485ms (440 modules)
+ ✓ Compiled in 235ms (440 modules)
+ ✓ Compiled in 170ms (440 modules)
+ ✓ Compiled in 154ms (440 modules)
+ ✓ Compiled in 178ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 66ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /favicon-32x32.png 404 in 37ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /favicon-16x16.png 404 in 30ms
+ ✓ Compiled /_error in 493ms (1466 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 326ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 14ms
+ ⨯ A conflicting public file and page file was found for path /favicon.ico https://nextjs.org/docs/messages/conflicting-public-file-page
+ GET /favicon.ico 500 in 899ms
+ ⨯ A conflicting public file and page file was found for path /favicon.ico https://nextjs.org/docs/messages/conflicting-public-file-page
+ GET /favicon.ico 500 in 213ms
+ ⨯ A conflicting public file and page file was found for path /favicon.ico https://nextjs.org/docs/messages/conflicting-public-file-page
+ GET /favicon.ico 500 in 215ms
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at UnifiedNavigation (src/components/UnifiedNavigation.tsx:24:27)
+  22 |   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  23 |   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
+> 24 |   const t = useTranslations();
+     |                           ^
+  25 |
+  26 |   // Helper function to create locale-aware URLs
+  27 |   const createLocalizedUrl = (path: string) => { {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /en 200 in 143ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1321ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1266ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1219ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1340ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1359ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1422ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1203ms
+ ✓ Compiled /middleware in 144ms (182 modules)
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1297ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1909ms
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1875ms
+ ✓ Compiled /middleware in 303ms (182 modules)
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.7s
+   Reload env: .env.local
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1436ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1386ms
+ ✓ Compiled /middleware in 208ms (182 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 1469ms (1145 modules)
+ GET /en 200 in 1733ms
+ ✓ Compiled in 392ms (440 modules)
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at UnifiedNavigation (src/components/UnifiedNavigation.tsx:24:27)
+  22 |   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  23 |   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
+> 24 |   const t = useTranslations();
+     |                           ^
+  25 |
+  26 |   // Helper function to create locale-aware URLs
+  27 |   const createLocalizedUrl = (path: string) => { {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+getRequestConfig called with locale: undefined
+Type of locale: undefined
+Invalid locale: undefined Available locales: [
+  'en', 'es', 'de',
+  'fr', 'pt', 'br',
+  'it', 'ja', 'ko',
+  'zh', 'ar', 'hi',
+  'ru'
+]
+Using locale: en
+Successfully loaded messages for locale: en
+getRequestConfig called with locale: en
+Type of locale: string
+Using locale: en
+Successfully loaded messages for locale: en
+ GET /en 200 in 61ms
+[?25h
+
+> campaign-ai@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1331ms
