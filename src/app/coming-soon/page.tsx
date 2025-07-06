@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ComingSoonPage() {
   const [email, setEmail] = useState('');
@@ -113,9 +114,9 @@ export default function ComingSoonPage() {
 
         {/* Footer */}
         <div className="mt-16 text-sm text-gray-500">
-          <a href="/en/dashboard" className="hover:text-gray-400">
+          <Link href="/en/dashboard" className="hover:text-gray-400">
             Team Login →
-          </a>
+          </Link>
         </div>
       </div>
     </div>
